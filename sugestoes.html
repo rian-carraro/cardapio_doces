@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LR Gourmet | Sugestões</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Status de Abertura -->
+    <div id="statusBar" class="status-bar d-none">
+        <span id="statusText"></span>
+    </div>
+
+   <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">LR Gourmet</a>
+            <button class="navbar-toggler ml-auto" type="button" data-toggle="collapse" data-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav mx-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="cardapio.html">Cardápio</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="horarios.html">Horários</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="contato.html">Contato</a>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link" href="sugestoes.html">Sugestões</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Sugestões -->
+    <section class="container my-5" style="padding-top: 100px;">
+        <h2 class="text-center mb-5">💡 Envie Sua Sugestão</h2>
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="card shadow">
+                    <div class="card-body">
+                        <form id="suggestionForm">
+                            <div class="form-group">
+                                <label for="nome">Nome (opcional)</label>
+                                <input type="text" class="form-control" id="nome">
+                            </div>
+                            <div class="form-group">
+                                <label for="sugestao">Sua Sugestão</label>
+                                <textarea class="form-control" id="sugestao" rows="5" required 
+                                          placeholder="Ex.: Novo sabor de doce, promoções, melhorias no atendimento..."></textarea>
+                            </div>
+                            <div class="form-group form-check">
+                                <input type="checkbox" class="form-check-input" id="receberResposta">
+                                <label class="form-check-label" for="receberResposta">Desejo receber resposta por e-mail</label>
+                            </div>
+                            <button type="submit" class="btn btn-success btn-block">Enviar Sugestão</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-dark text-white py-4">
+        <div class="container text-center">
+            <h4>Siga-nos!</h4>
+            <div class="social-icons my-3">
+                <a href="#" class="text-white mx-2"><i class="fab fa-facebook-f fa-2x"></i></a>
+                <a href="#" class="text-white mx-2"><i class="fab fa-instagram fa-2x"></i></a>
+                <a href="#" class="text-white mx-2"><i class="fab fa-whatsapp fa-2x"></i></a>
+            </div>
+            <p>&copy; 2023 LR Gourmet. Todos os direitos reservados.</p>
+        </div>
+    </footer>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

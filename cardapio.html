@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LR Gourmet | Cardápio</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Status de Abertura -->
+    <div id="statusBar" class="status-bar d-none">
+        <span id="statusText"></span>
+    </div>
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">LR Gourmet</a>
+            <button class="navbar-toggler ml-auto" type="button" data-toggle="collapse" data-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav mx-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">Home</a>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link" href="cardapio.html">Cardápio</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="horarios.html">Horários</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="contato.html">Contato</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="sugestoes.html">Sugestões</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Cardápio -->
+    <section class="container my-5" style="padding-top: 100px;">
+        <h2 class="text-center mb-5">🍰 Cardápio Completo</h2>
+        <div class="row">
+            <div class="col-md-6 mb-4">
+                <div class="card h-100 shadow">
+                    <div class="card-header bg-danger text-white">
+                        <h4>Doces</h4>
+                    </div>
+                    <div class="card-body">
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                                <div class="product-with-image">
+                                    <img src="https://placehold.co/100x100/e63946/ffffff?text=Bom+Bom+Morango" class="product-image" alt="Bom Bom de Morango">
+                                    <div class="product-info">
+                                        <h5>Bom Bom de Morango</h5>
+                                        <p class="mb-1">Brigadeiro tradicional, Brigadeiro de Ninho, e Morangos frescos.</p>
+                                        <strong>R$ 12,00</strong>
+                                    </div>
+                                </div>
+                                <button class="btn btn-sm btn-primary add-to-cart" 
+                                        data-name="Bom Bom de Morango" 
+                                        data-price="12.00">
+                                    </i> Adicionar</button>
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                                <div class="product-with-image">
+                                    <img src="https://placehold.co/100x100/e63946/ffffff?text=Bom+Bom+Uva" class="product-image" alt="Bom Bom de Uva">
+                                    <div class="product-info">
+                                        <h5>Bom Bom de Uva</h5>
+                                        <p class="mb-1">Brigadeiro tradicional, Brigadeiro de Ninho, e Uvas frescas.</p>
+                                        <strong>R$ 12,00</strong>
+                                    </div>
+                                </div>
+                                <button class="btn btn-sm btn-primary add-to-cart" 
+                                        data-name="Bom Bom de Uva" 
+                                        data-price="12.00">
+                                    </i> Adicionar</button>
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                                <div class="product-with-image">
+                                    <img src="https://placehold.co/100x100/e63946/ffffff?text=Tortinha+Limão" class="product-image" alt="Tortinha de Limão">
+                                    <div class="product-info">
+                                        <h5>Tortinha de Limão</h5>
+                                        <p class="mb-1">Bolacha amanteigada com recheio de limão.</p>
+                                        <strong>R$ 12,00</strong>
+                                    </div>
+                                </div>
+                                <button class="btn btn-sm btn-primary add-to-cart" 
+                                        data-name="Tortinha de Limão" 
+                                        data-price="12.00">
+                                    </i> Adicionar</button>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 mb-4">
+                <div class="card h-100 shadow">
+                    <div class="card-header bg-danger text-white">
+                        <h4>Doces Especiais</h4>
+                    </div>
+                    <div class="card-body">
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                                <div class="product-with-image">
+                                    <img src="https://placehold.co/100x100/e63946/ffffff?text=Brigadeiro+Gourmet" class="product-image" alt="Brigadeiro Gourmet">
+                                    <div class="product-info">
+                                        <h5>Brigadeiro Gourmet</h5>
+                                        <p class="mb-1">Brigadeiro premium com chocolate belga e granulados especiais.</p>
+                                        <strong>R$ 8,00</strong>
+                                    </div>
+                                </div>
+                                <button class="btn btn-sm btn-primary add-to-cart" 
+                                        data-name="Brigadeiro Gourmet" 
+                                        data-price="8.00">
+                                    </i> Adicionar</button>
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                                <div class="product-with-image">
+                                    <img src="https://placehold.co/100x100/e63946/ffffff?text=Beijinho" class="product-image" alt="Beijinho">
+                                    <div class="product-info">
+                                        <h5>Beijinho</h5>
+                                        <p class="mb-1">Doce de coco com leite condensado, enrolado em coco ralado.</p>
+                                        <strong>R$ 8,00</strong>
+                                    </div>
+                                </div>
+                                <button class="btn btn-sm btn-primary add-to-cart" 
+                                        data-name="Beijinho" 
+                                        data-price="8.00">
+                                    </i> Adicionar</button>
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                                <div class="product-with-image">
+                                    <img src="https://placehold.co/100x100/e63946/ffffff?text=Cajuzinho" class="product-image" alt="Cajuzinho">
+                                    <div class="product-info">
+                                        <h5>Cajuzinho</h5>
+                                        <p class="mb-1">Doce de amendoim com chocolate, no formato de caju.</p>
+                                        <strong>R$ 8,00</strong>
+                                    </div>
+                                </div>
+                                <button class="btn btn-sm btn-primary add-to-cart" 
+                                        data-name="Cajuzinho" 
+                                        data-price="8.00">
+                                    </i> Adicionar</button>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 mb-4">
+                <div class="card h-100 shadow">
+                    <div class="card-header bg-primary text-white">
+                        <h4>Bebidas</h4>
+                    </div>
+                    <div class="card-body">
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                                <div class="product-with-image">
+                                    <img src="https://placehold.co/100x100/2a9d8f/ffffff?text=Suco+Natural" class="product-image" alt="Suco Natural">
+                                    <div class="product-info">
+                                        <h5>Suco Natural 500ml</h5>
+                                        <p class="mb-1">Suco natural feito na hora (laranja, limão, maracujá).</p>
+                                        <strong>R$ 10,00</strong>
+                                    </div>
+                                </div>
+                                <button class="btn btn-sm btn-primary add-to-cart" 
+                                        data-name="Suco Natural 500ml" 
+                                        data-price="10.00">
+                                    </i>Adicionar</button>
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                                <div class="product-with-image">
+                                    <img src="https://placehold.co/100x100/2a9d8f/ffffff?text=Refrigerante" class="product-image" alt="Refrigerante">
+                                    <div class="product-info">
+                                        <h5>Refrigerante 350ml</h5>
+                                        <p class="mb-1">Refrigerante (Coca-Cola, Guaraná, Fanta).</p>
+                                        <strong>R$ 6,00</strong>
+                                    </div>
+                                </div>
+                                <button class="btn btn-sm btn-primary add-to-cart" 
+                                        data-name="Refrigerante 350ml" 
+                                        data-price="6.00">
+                                    </i>Adicionar</button>
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                                <div class="product-with-image">
+                                    <img src="https://placehold.co/100x100/2a9d8f/ffffff?text=Água" class="product-image" alt="Água Mineral">
+                                    <div class="product-info">
+                                        <h5>Água Mineral 500ml</h5>
+                                        <p class="mb-1">Água mineral com ou sem gás.</p>
+                                        <strong>R$ 4,00</strong>
+                                    </div>
+                                </div>
+                                <button class="btn btn-sm btn-primary add-to-cart" 
+                                        data-name="Água Mineral 500ml" 
+                                        data-price="4.00">
+                                    </i> Adicionar</button>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Modal do Carrinho -->
+    <div class="modal fade" id="cartModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">🛒 Seu Pedido</h5>
+                    <button type="button" class="close" data-dismiss="modal">
+                        <span>&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div id="cartItems" class="mb-3">
+                        <!-- Itens serão adicionados aqui via JS -->
+                    </div>
+                    <hr>
+                    <h5>Total: <span id="cartTotal">R$ 0,00</span></h5>
+                    
+                    <form id="orderForm" class="mt-4">
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder="Seu Nome" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="tel" class="form-control" placeholder="WhatsApp (com DDD)" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder="Endereço Completo" required>
+                        </div>
+                        <div class="form-group">
+                            <select class="form-control" required>
+                                <option value="">Forma de Pagamento</option>
+                                <option value="Cartão">Cartão</option>
+                                <option value="PIX">PIX</option>
+                                <option value="Dinheiro">Dinheiro</option>
+                            </select>
+                        </div>
+                        <div class="form-group" id="changeField" style="display: none;">
+                            <input type="text" class="form-control" placeholder="Valor para troco">
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Continuar Comprando</button>
+                    <button type="button" id="sendOrderBtn" class="btn btn-success">Enviar Pedido</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal para Produtos (Mobile) -->
+    <div class="modal fade mobile-modal" id="productModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="productModalTitle"></h5>
+                    <button type="button" class="close" data-dismiss="modal">
+                        <span>&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body text-center">
+                    <img id="productModalImage" class="product-modal-img" src="" alt="">
+                    <p id="productModalDescription"></p>
+                    <p id="productModalPrice" class="price"></p>
+                    <button id="productModalAddBtn" class="btn btn-danger btn-block">Adicionar ao Carrinho</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal de Horário (quando fechado) -->
+    <div class="modal fade" id="closedModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">⏰ Fora do Horário de Funcionamento</h5>
+                    <button type="button" class="close" data-dismiss="modal">
+                        <span>&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p>No momento estamos fechados. Nosso horário de funcionamento é:</p>
+                    <ul>
+                        <li>Segunda à Sexta: 10:00 - 22:00</li>
+                        <li>Sábado: 11:00 - 23:00</li>
+                        <li>Domingo: Fechado</li>
+                    </ul>
+                    <p>Voltaremos a atender em breve!</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Entendi</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Botão do Carrinho Flutuante -->
+    <div class="cart-floating-btn" data-toggle="modal" data-target="#cartModal">
+        <i class="fas fa-shopping-cart"></i>
+        <span class="cart-count">0</span>
+    </div>
+
+    <footer class="bg-dark text-white py-4">
+        <div class="container text-center">
+            <h4>Siga-nos!</h4>
+            <div class="social-icons my-3">
+                <a href="#" class="text-white mx-2"><i class="fab fa-facebook-f fa-2x"></i></a>
+                <a href="#" class="text-white mx-2"><i class="fab fa-instagram fa-2x"></i></a>
+                <a href="#" class="text-white mx-2"><i class="fab fa-whatsapp fa-2x"></i></a>
+            </div>
+            <p>&copy; 2023 LR Gourmet. Todos os direitos reservados.</p>
+        </div>
+    </footer>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
