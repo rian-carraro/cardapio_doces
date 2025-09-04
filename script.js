@@ -1,7 +1,14 @@
-// Configuração de horário de funcionamento
-const openingTime = 7; // 10:00
-const closingTime = 24; // 22:00
-const closedDays = [0]; // Domingo (0 = domingo, 1 = segunda, etc.)
+// Configuração de horário de funcionamento por dia da semana
+// 0 = Domingo, 1 = Segunda, 2 = Terça, 3 = Quarta, 4 = Quinta, 5 = Sexta, 6 = Sábado
+const businessHours = {
+    0: { open: null, close: null },     // Domingo: fechado
+    1: { open: 20, close: 22 },        // Segunda: 20h às 22h
+    2: { open: 20, close: 22 },        // Terça: 20h às 22h
+    3: { open: 20, close: 22 },        // Quarta: 20h às 22h
+    4: { open: 13, close: 22 },        // Quinta: 20h às 22h
+    5: { open: 20, close: 22 },        // Sexta: 20h às 22h
+    6: { open: 10, close: 19 }         // Sábado: 10h às 19h
+};
 
 // Carrinho de Compras
 let cart = JSON.parse(localStorage.getItem('lancheriaCart')) || [];
@@ -10,20 +17,23 @@ let isOpen = false;
 // Verificar horário de funcionamento
 function checkBusinessHours() {
     const now = new Date();
-    const currentHour = now.getHours();
     const currentDay = now.getDay();
+    const currentHour = now.getHours();
+    const currentMinute = now.getMinutes();
     
-    // Verificar se é um dia de fechamento
-    if (closedDays.includes(currentDay)) {
+    // Obter horários do dia atual
+    const todayHours = businessHours[currentDay];
+    
+    // Se não há horário definido ou está fechado o dia todo
+    if (!todayHours || todayHours.open === null) {
         return false;
     }
     
-    // Verificar se está dentro do horário comercial
-    if (currentHour >= openingTime && currentHour < closingTime) {
-        return true;
-    }
+    // Converter hora atual para decimal (ex: 14:30 → 14.5)
+    const currentTime = currentHour + (currentMinute / 60);
     
-    return false;
+    // Verificar se está dentro do horário de funcionamento
+    return currentTime >= todayHours.open && currentTime < todayHours.close;
 }
 
 // Atualizar status de abertura
@@ -34,13 +44,26 @@ function updateStatus() {
     
     if (isOpen) {
         statusBar.className = 'status-bar status-open';
-        statusText.textContent = 'Estamos abertos!';
+        statusText.innerHTML = '<img src="https://img.icons8.com/ios-filled/20/40C057/checked--v1.png" alt="Aberto" style="margin-right: 8px; vertical-align: middle;"> Estamos abertos!';
     } else {
         statusBar.className = 'status-bar status-closed';
-        statusText.textContent = 'Estamos fechados';
+        statusText.innerHTML = '<img src="https://img.icons8.com/ios-filled/20/FF0000/cancel.png" alt="Fechado" style="margin-right: 8px; vertical-align: middle;"> Estamos fechados';
     }
     
     statusBar.classList.remove('d-none');
+}
+
+// Função para mostrar horários de funcionamento
+function getBusinessHoursMessage() {
+    const now = new Date();
+    const currentDay = now.getDay();
+    const todayHours = businessHours[currentDay];
+    
+    if (!todayHours || todayHours.open === null) {
+        return "Fechado hoje";
+    }
+    
+    return `Aberto hoje das ${todayHours.open}h às ${todayHours.close}h`;
 }
 
 // Função para formatar valores monetários
@@ -107,7 +130,6 @@ function addToCart(name, price) {
     // Verificar se está aberto antes de adicionar ao carrinho
     if (!isOpen) {
         $('#closedModal').modal('show');
-        
         return;
     }
     
@@ -152,6 +174,15 @@ function showAlert(message, type = 'success') {
 document.addEventListener('DOMContentLoaded', function() {
     // Atualizar status de abertura
     updateStatus();
+    
+    // Adicionar informação de horário atual
+const statusInfo = document.createElement('div');
+statusInfo.className = 'status-info small mt-1';
+statusInfo.style.color = '#ffffff'; // Texto branco
+statusInfo.style.fontWeight = '500';
+statusInfo.style.textShadow = '1px 1px 2px rgba(0, 0, 0, 0.5)'; // Sombra para melhor contraste
+statusInfo.textContent = getBusinessHoursMessage();
+document.getElementById('statusText').parentNode.appendChild(statusInfo);
     
     // Atualiza o carrinho ao carregar a página
     updateCart();

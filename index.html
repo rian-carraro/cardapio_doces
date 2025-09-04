@@ -56,40 +56,122 @@
         </div>
     </div>
 
+    <!-- Conteúdo Principal -->
+    <div class="container mt-5 pt-4">
+        <!-- Botão para Cardápio Completo -->
+        <div class="d-flex justify-content-end pr-4">
+    <a href="cardapio.html" class="btn btn-cardapio-completo">
+        </i> Ver Cardápio Completo</a>
+</div>
+
     <!-- Mais Vendidos -->
-    <section class="container my-5">
-        <h2 class="text-center mb-5">🍰 Mais Vendidos</h2>
+    <section class="container my-5" style="padding-top: 100px;">
+        <h2 class="text-center mb-5">Mais Vendidos</h2>
         <div class="row">
-            <div class="col-md-4 mb-4">
+            <div class="col-md-6 mb-4">
                 <div class="card h-100 shadow">
-                    <img src="bom bom de morango.svg" class="card-img-top" alt="Bom Bom de Morango">
-                    <div class="card-body text-center">
-                        <h5 class="card-title">Bom Bom de Morango</h5>
-                        <p class="card-text">Brigadeiro tradicional, Brigadeiro de Ninho, e Morangos frescos.</p>
-                        <p class="price">R$ 12,00</p>
-                        <button class="btn btn-danger add-to-cart" data-name="Bom Bom de Morango" data-price="12.00">Adicionar</button>
+                    <div class="card-header bg-danger text-white">
+                        <h4>Doces</h4>
+                    </div>
+                    <div class="card-body">
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                                <div class="product-with-image">
+                                    <img src="bom bom de morango.svg" class="product-image" alt="Bom Bom de Morango">
+                                    <div class="product-info">
+                                        <h5>Bom Bom de Morango</h5>
+                                        <p class="mb-1">Brigadeiro tradicional, Brigadeiro de Ninho, e Morangos frescos.</p>
+                                        <strong>R$ 12,00</strong>
+                                    </div>
+                                </div>
+                                <button class="btn btn-sm btn-primary add-to-cart" 
+                                        data-name="Bom Bom de Morango" 
+                                        data-price="12.00">
+                                    </i> Adicionar</button>
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                                <div class="product-with-image">
+                                    <img src="bom bom de uva.svg" class="product-image" alt="Bom Bom de Uva">
+                                    <div class="product-info">
+                                        <h5>Bom Bom de Uva</h5>
+                                        <p class="mb-1">Brigadeiro tradicional, Brigadeiro de Ninho, e Uvas frescas.</p>
+                                        <strong>R$ 12,00</strong>
+                                    </div>
+                                </div>
+                                <button class="btn btn-sm btn-primary add-to-cart" 
+                                        data-name="Bom Bom de Uva" 
+                                        data-price="12.00">
+                                    </i> Adicionar</button>
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                                <div class="product-with-image">
+                                    <img src="tortinha de limão.svg" class="product-image" alt="Tortinha de Limão">
+                                    <div class="product-info">
+                                        <h5>Tortinha de Limão</h5>
+                                        <p class="mb-1">Bolacha amanteigada com recheio de limão.</p>
+                                        <strong>R$ 12,00</strong>
+                                    </div>
+                                </div>
+                                <button class="btn btn-sm btn-primary add-to-cart" 
+                                        data-name="Tortinha de Limão" 
+                                        data-price="12.00">
+                                    </i> Adicionar</button>
+                            </li>
+                        </ul>
                     </div>
                 </div>
             </div>
-            <div class="col-md-4 mb-4">
+            
+            <div class="col-md-6 mb-4">
                 <div class="card h-100 shadow">
-                    <img src="bom bom de uva.svg" class="card-img-top" alt="Bom Bom de Uva">
-                    <div class="card-body text-center">
-                        <h5 class="card-title">Bom Bom de Uva</h5>
-                        <p class="card-text">Brigadeiro tradicional, Brigadeiro de Ninho, e Uvas frescas.</p>
-                        <p class="price">R$ 12,00</p>
-                        <button class="btn btn-danger add-to-cart" data-name="Bom Bom de Uva" data-price="12.00">Adicionar</button>
+                    <div class="card-header bg-primary text-white">
+                        <h4>Bebidas</h4>
                     </div>
-                </div>
-            </div>
-            <div class="col-md-4 mb-4">
-                <div class="card h-100 shadow">
-                    <img src="tortinha de limão.svg" class="card-img-top" alt="Tortinha de Limão">
-                    <div class="card-body text-center">
-                        <h5 class="card-title">Tortinha de Limão</h5>
-                        <p class="card-text">Bolacha amanteigada com recheio de limão.</p>
-                        <p class="price">R$ 12,00</p>
-                        <button class="btn btn-danger add-to-cart" data-name="Tortinha de Limão" data-price="12.00">Adicionar</button>
+                    <div class="card-body">
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                                <div class="product-with-image">
+                                    <img src="https://placehold.co/100x100/2a9d8f/ffffff?text=Suco+Natural" class="product-image" alt="Suco Natural">
+                                    <div class="product-info">
+                                        <h5>Suco Natural 500ml</h5>
+                                        <p class="mb-1">Suco natural feito na hora (laranja, limão, maracujá).</p>
+                                        <strong>R$ 10,00</strong>
+                                    </div>
+                                </div>
+                                <button class="btn btn-sm btn-primary add-to-cart" 
+                                        data-name="Suco Natural 500ml" 
+                                        data-price="10.00">
+                                    </i>Adicionar</button>
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                                <div class="product-with-image">
+                                    <img src="https://placehold.co/100x100/2a9d8f/ffffff?text=Refrigerante" class="product-image" alt="Refrigerante">
+                                    <div class="product-info">
+                                        <h5>Refrigerante 350ml</h5>
+                                        <p class="mb-1">Refrigerante (Coca-Cola, Guaraná, Fanta).</p>
+                                        <strong>R$ 6,00</strong>
+                                    </div>
+                                </div>
+                                <button class="btn btn-sm btn-primary add-to-cart" 
+                                        data-name="Refrigerante 350ml" 
+                                        data-price="6.00">
+                                    </i>Adicionar</button>
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                                <div class="product-with-image">
+                                    <img src="https://placehold.co/100x100/2a9d8f/ffffff?text=Água" class="product-image" alt="Água Mineral">
+                                    <div class="product-info">
+                                        <h5>Água Mineral 500ml</h5>
+                                        <p class="mb-1">Água mineral com ou sem gás.</p>
+                                        <strong>R$ 4,00</strong>
+                                    </div>
+                                </div>
+                                <button class="btn btn-sm btn-primary add-to-cart" 
+                                        data-name="Água Mineral 500ml" 
+                                        data-price="4.00">
+                                    </i> Adicionar</button>
+                            </li>
+                        </ul>
                     </div>
                 </div>
             </div>
@@ -203,7 +285,7 @@
             <div class="social-icons my-3">
                 <a href="#" class="text-white mx-2"><i class="fab fa-facebook-f fa-2x"></i></a>
                 <a href="#" class="text-white mx-2"><i class="fab fa-instagram fa-2x"></i></a>
-                <a href="#" class="text-white mx-2"><i class="fab fa-whatsapp fa-2x"></i></a>
+                <a href="https://wa.me/5514998947758" class="text-white mx-2"><i class="fab fa-whatsapp fa-2x"></i></a>
             </div>
             <p>&copy; 2025 LR Gourmet. Todos os direitos reservados.</p>
         </div>

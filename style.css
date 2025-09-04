@@ -57,7 +57,7 @@ body {
 /* Navbar Moderna */
 .navbar {
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    background-color: #e63946 !important;
+    background-color: #51e5ff !important;
     padding: 0.8rem 1rem;
     transition: all 0.3s ease;
 }
@@ -66,27 +66,31 @@ body {
     padding: 0.5rem 1rem;
 }
 
+/* cor do nome da empresa */
 .navbar-brand {
     font-weight: 700;
     font-size: 1.8rem;
-    color: white !important;
+    color: rgb(0, 0, 0) !important;
     text-transform: uppercase;
     letter-spacing: 1px;
 }
 
+/* cor dos links de paginas */
 .nav-link {
     font-weight: 600;
     padding: 0.5rem 1.2rem !important;
-    color: rgba(255, 255, 255, 0.9) !important;
+    color: rgba(0, 0, 0, 0.9) !important;
     transition: all 0.3s;
     position: relative;
 }
 
+/* cor do efeito dos links */
 .nav-link:hover {
-    color: white !important;
+    color: rgb(255, 255, 255) !important;
     transform: translateY(-2px);
 }
 
+/* cor do efeito dos links */
 .nav-link::after {
     content: '';
     position: absolute;
@@ -102,9 +106,32 @@ body {
     width: calc(100% - 2.4rem);
 }
 
+/* cor depois do efeito dos links */
 .nav-item.active .nav-link {
     color: white !important;
     font-weight: 700;
+}
+
+ /* Botão de Ver Cardápio Completo */
+.btn-cardapio-completo {
+    background: linear-gradient(45deg, #e63946, #c1121f);
+    color: white;
+    border: none;
+    padding: 12px 30px;
+    border-radius: 50px;
+    font-weight: 600;
+    font-size: 1.1rem;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(230, 57, 70, 0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    max-width: 300px;
+    /* ADICIONE ESTAS PROPRIEDADES: */
+    margin-left: auto;      /* Move para a direita */
+    margin-right: 20px;     /* Distância da borda direita */
+    margin-top: 50px;       /* Move para baixo */
+    margin-bottom: 0px;    /* Espaço abaixo do botão */
 }
 
 /* Seção de Conteúdo */
@@ -115,7 +142,7 @@ section {
 h2 {
     font-weight: 700;
     color: #e63946;
-    margin-bottom: 2.5rem;
+    margin-bottom: 10px;
     position: relative;
     display: inline-block;
 }
@@ -195,10 +222,10 @@ h2::after {
 }
 
 .btn-primary:hover {
-    background-color: #c1121f;
-    border-color: #c1121f;
+    background-color: #e63946;
+    border-color: #e63946;
     transform: translateY(-2px);
-    box-shadow: 0 6px 16px rgba(230, 57, 70, 0.4);
+    box-shadow: 0 4px 12px rgba(230, 57, 70, 0.4);
 }
 
 .btn-success {
@@ -266,8 +293,8 @@ footer {
     position: fixed;
     bottom: 30px;
     right: 30px;
-    background: #e63946;
-    color: white;
+    background: #51e5ff;
+    color: rgb(0, 0, 0);
     width: 70px;
     height: 70px;
     border-radius: 50%;
@@ -325,8 +352,8 @@ footer {
 }
 
 .modal-header {
-    background-color: #e63946;
-    color: white;
+    background-color: #51e5ff;
+    color: rgb(0, 0, 0);
     border-bottom: none;
     padding: 1.2rem 1.5rem;
 }
@@ -337,7 +364,7 @@ footer {
 }
 
 .modal-body {
-    padding: 1.5rem;
+    padding: 1.5 rem;
 }
 
 /* Itens do Carrinho */
