@@ -45,9 +45,66 @@ body {
     }
 }
 
+
+/* Ícone hamburger animado */
+.navbar-toggler {
+    border: none;
+    background: transparent !important;
+    padding: 0.5rem;
+}
+
+.custom-toggler .navbar-toggler-icon {
+    background-image: none;
+    position: relative;
+    width: 30px;
+    height: 20px;
+    transition: all 0.3s ease;
+}
+
+.custom-toggler .navbar-toggler-icon span {
+    display: block;
+    position: absolute;
+    height: 3px;
+    width: 100%;
+    background: white;
+    border-radius: 3px;
+    opacity: 1;
+    left: 0;
+    transform: rotate(0deg);
+    transition: .25s ease-in-out;
+}
+
+.custom-toggler .navbar-toggler-icon span:nth-child(1) {
+    top: 0px;
+}
+
+.custom-toggler .navbar-toggler-icon span:nth-child(2) {
+    top: 8px;
+}
+
+.custom-toggler .navbar-toggler-icon span:nth-child(3) {
+    top: 16px;
+}
+
+/* Animação quando o menu está aberto */
+.custom-toggler[aria-expanded="true"] .navbar-toggler-icon span:nth-child(1) {
+    top: 8px;
+    transform: rotate(135deg);
+}
+
+.custom-toggler[aria-expanded="true"] .navbar-toggler-icon span:nth-child(2) {
+    opacity: 0;
+    left: -60px;
+}
+
+.custom-toggler[aria-expanded="true"] .navbar-toggler-icon span:nth-child(3) {
+    top: 8px;
+    transform: rotate(-135deg);
+}
+
 /* Ajustar o padding do body */
 body {
-    padding-top: 100px; /* Apenas a altura da navbar */
+    padding-top: 10px; /* Apenas a altura da navbar */
     font-family: 'Poppins', sans-serif;
     background-color: #fff9f5;
     color: #333;
@@ -113,7 +170,7 @@ body {
 }
 
  /* Botão de Ver Cardápio Completo */
-.btn-cardapio-completo {
+/*.btn-cardapio-completo {
     background: linear-gradient(45deg, #e63946, #c1121f);
     color: white;
     border: none;
@@ -127,12 +184,11 @@ body {
     align-items: center;
     justify-content: center;
     max-width: 300px;
-    /* ADICIONE ESTAS PROPRIEDADES: */
-    margin-left: auto;      /* Move para a direita */
-    margin-right: 20px;     /* Distância da borda direita */
-    margin-top: 50px;       /* Move para baixo */
-    margin-bottom: 0px;    /* Espaço abaixo do botão */
-}
+    margin-left: auto;       Move para a direita 
+    margin-right: 20px;      Distância da borda direita 
+    margin-top: 50px;        Move para baixo 
+    margin-bottom: 0px;      Espaço abaixo do botão 
+} */
 
 /* Seção de Conteúdo */
 section {
@@ -145,6 +201,7 @@ h2 {
     margin-bottom: 10px;
     position: relative;
     display: inline-block;
+    margin-top: 2px;
 }
 
 h2::after {
@@ -468,7 +525,7 @@ footer {
 
 @media (max-width: 768px) {
     body {
-        padding-top: 110px;
+        padding-top: 40px;
     }
     
     section {
@@ -524,11 +581,10 @@ footer {
   #statusBar,
   .status-bar {
     font-size: 0.85rem;
-    padding: 6px 12px;
-    border-radius: 0 0 12px 12px;
+    padding: 16px 20px;
+    border-radius: 50px;
     max-width: 90vw;
-    left: 5vw !important;
-    right: 5vw !important;
+    margin-right: 15px;
   }
 }
 

@@ -18,9 +18,16 @@
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
         <div class="container">
-            <a class="navbar-brand" href="index.html">LR Gourmet</a>
-            <button class="navbar-toggler ml-auto" type="button" data-toggle="collapse" data-target="#navbarNav">
-                <span class="navbar-toggler-icon"></span>
+            <a class="navbar-brand" href="index.html">
+                <img src="LOGOS 80x80 px.svg" alt="LR Gourmet" class="brand-logo">
+                LR Gourmet
+            </a>
+            <button class="navbar-toggler custom-toggler ml-auto" type="button" data-toggle="collapse" data-target="#navbarNav">
+                <span class="navbar-toggler-icon">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav mx-auto">
@@ -253,6 +260,11 @@
                         <div class="form-group">
                             <input type="text" class="form-control" placeholder="Endereço Completo" required>
                         </div>
+                            <div class="form-group">
+                            <label for="cep">CEP</label>
+                            <input type="text" class="form-control" id="cep" placeholder="Digite seu CEP" required maxlength="9">
+                            <small class="form-text text-muted">Digite seu CEP para calcular a taxa de entrega</small>
+                        </div>
                         <div class="form-group">
                             <select class="form-control" required>
                                 <option value="">Forma de Pagamento</option>
@@ -342,5 +354,6 @@
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script src="script.js"></script>
+    <script src="entregas.js"></script>
 </body>
 </html>
