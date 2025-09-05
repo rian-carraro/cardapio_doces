@@ -10,7 +10,7 @@ body {
 /* Status de Abertura Flutuante */
 .status-bar {
     position: fixed;
-    top: 80px; /* Posiciona logo abaixo da navbar */
+    top: 100px; /* Posiciona logo abaixo da navbar */
     left: 50%;
     transform: translateX(-50%);
     padding: 12px 24px;
@@ -47,7 +47,7 @@ body {
 
 /* Ajustar o padding do body */
 body {
-    padding-top: 80px; /* Apenas a altura da navbar */
+    padding-top: 100px; /* Apenas a altura da navbar */
     font-family: 'Poppins', sans-serif;
     background-color: #fff9f5;
     color: #333;
