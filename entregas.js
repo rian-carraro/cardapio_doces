@@ -18,34 +18,43 @@ const taxasEntrega = {
     "OUTROS": 15.00 // Taxa para bairros não listados
 };
 
-// Mapeamento de CEPs para bairros (faixas de CEP de Jaú)
-const cepParaBairro = {
-    "17200": "CENTRO",
-    "17201": "VILA PINHEIRO", 
-    "17202": "JARDIM PAULISTA",
-    "17203": "JARDIM PEDRO OMETTO",
-    "17204": "JARDIM SAO JORGE",
-    "17205": "JARDIM JOAO XXIII",
-    "17206": "JARDIM JORGE ATALLA",
-    "17207": "JARDIM AEROPORTO",
-    "17208": "JARDIM FLORIDA",
-    "17209": "JARDIM PANORAMA",
-    "17210": "DISTRITO INDUSTRIAL",
-    "17211": "JARDIM SANTA LUZIA",
-    "17212": "JARDIM NOVA JAÚ",
-    "17213": "PARQUE INDUSTRIAL",
-    "17214": "JARDIM BELA VISTA"
-};
+// Mapeamento de faixas de CEP para bairros
+const cepParaBairro = [
+    { inicio: 17200000, fim: 17200999, bairro: "CENTRO" },
+    { inicio: 17201000, fim: 17201999, bairro: "VILA PINHEIRO" },
+    { inicio: 17202000, fim: 17202999, bairro: "JARDIM PAULISTA" },
+    { inicio: 17203000, fim: 17203999, bairro: "JARDIM PEDRO OMETTO" },
+    { inicio: 17204140, fim: 17204740, bairro: "JARDIM SAO JORGE" }, // Faixa específica
+    { inicio: 17204000, fim: 17204999, bairro: "JARDIM SAO JORGE" }, // Restante do intervalo
+    { inicio: 17205000, fim: 17205999, bairro: "JARDIM JOAO XXIII" },
+    { inicio: 17206000, fim: 17206999, bairro: "JARDIM JORGE ATALLA" },
+    { inicio: 17207000, fim: 17207999, bairro: "JARDIM AEROPORTO" },
+    { inicio: 17208000, fim: 17208999, bairro: "JARDIM FLORIDA" },
+    { inicio: 17209000, fim: 17209999, bairro: "JARDIM PANORAMA" },
+    { inicio: 17210000, fim: 17210999, bairro: "DISTRITO INDUSTRIAL" },
+    { inicio: 17211000, fim: 17211999, bairro: "JARDIM SANTA LUZIA" },
+    { inicio: 17212000, fim: 17212999, bairro: "JARDIM NOVA JAÚ" },
+    { inicio: 17213000, fim: 17213999, bairro: "PARQUE INDUSTRIAL" },
+    { inicio: 17214000, fim: 17214999, bairro: "JARDIM BELA VISTA" }
+];
+
+// Função para converter CEP para número
+function cepParaNumero(cep) {
+    return parseInt(cep.replace(/\D/g, ''), 10);
+}
 
 // Função para encontrar o bairro pelo CEP
 function encontrarBairroPorCEP(cep) {
-    // Remove caracteres não numéricos
-    cep = cep.replace(/\D/g, '');
+    const cepNumero = cepParaNumero(cep);
     
-    // Pega os primeiros 5 dígitos do CEP
-    const prefixoCEP = cep.substring(0, 5);
+    if (isNaN(cepNumero)) return "OUTROS";
     
-    return cepParaBairro[prefixoCEP] || "OUTROS";
+    // Procura a faixa de CEP que contém o número
+    const faixa = cepParaBairro.find(intervalo => 
+        cepNumero >= intervalo.inicio && cepNumero <= intervalo.fim
+    );
+    
+    return faixa ? faixa.bairro : "OUTROS";
 }
 
 // Função para calcular a taxa de entrega
@@ -55,4 +64,10 @@ function calcularTaxaEntrega(cep) {
         bairro: bairro,
         taxa: taxasEntrega[bairro] || taxasEntrega["OUTROS"]
     };
+}
+
+// Função para validar se o CEP é de Jaú
+function validarCEPJau(cep) {
+    const cepNumero = cepParaNumero(cep);
+    return cepNumero >= 17200000 && cepNumero <= 17214999;
 }

@@ -400,28 +400,65 @@ footer {
     }
 }
 
-/* Modal do Carrinho */
+/* Modal do Carrinho com Rolagem */
+.modal-dialog.modal-lg {
+    max-height: 90vh;
+}
+
 .modal-content {
-    border-radius: 12px;
-    overflow: hidden;
-    border: none;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
-}
-
-.modal-header {
-    background-color: #51e5ff;
-    color: rgb(0, 0, 0);
-    border-bottom: none;
-    padding: 1.2rem 1.5rem;
-}
-
-.modal-title {
-    font-weight: 700;
-    font-size: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    max-height: 90vh;
 }
 
 .modal-body {
-    padding: 1.5 rem;
+    overflow-y: auto;
+    flex: 1;
+    max-height: 60vh;
+    padding: 1.5rem;
+}
+
+/* Itens do Carrinho com rolagem */
+#cartItems {
+    max-height: 300px;
+    overflow-y: auto;
+    margin-bottom: 20px;
+    padding-right: 5px;
+}
+
+/* Personalizar a barra de rolagem */
+#cartItems::-webkit-scrollbar {
+    width: 6px;
+}
+
+#cartItems::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 10px;
+}
+
+#cartItems::-webkit-scrollbar-thumb {
+    background: #e63946;
+    border-radius: 10px;
+}
+
+#cartItems::-webkit-scrollbar-thumb:hover {
+    background: #c1121f;
+}
+
+/* Ajustar o footer do modal para ficar fixo */
+.modal-footer {
+    margin-top: auto;
+    flex-shrink: 0;
+}
+
+/* Ajustar o header do modal */
+.modal-header {
+    flex-shrink: 0;
+}
+
+/* Ajustar o formulário para não crescer demais */
+#orderForm {
+    flex-shrink: 0;
 }
 
 /* Itens do Carrinho */
@@ -429,8 +466,8 @@ footer {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 12px 0;
-    border-bottom: 1px solid #f0f0f0;
+    padding: 12px;
+    border-bottom: 1px solid #51e5ff;
     transition: all 0.3s;
 }
 
@@ -625,4 +662,20 @@ footer {
 
 .product-info {
     flex: 1;
+}
+
+.invalid-feedback {
+    display: block;
+    width: 100%;
+    margin-top: 0.25rem;
+    font-size: 80%;
+    color: #dc3545;
+}
+
+.is-invalid {
+    border-color: #dc3545 !important;
+}
+
+#cepError {
+    font-weight: 500;
 }

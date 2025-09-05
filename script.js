@@ -6,13 +6,15 @@ const businessHours = {
     2: { open: 20, close: 22 },        // Terça: 20h às 22h
     3: { open: 20, close: 22 },        // Quarta: 20h às 22h
     4: { open: 13, close: 22 },        // Quinta: 20h às 22h
-    5: { open: 20, close: 22 },        // Sexta: 20h às 22h
+    5: { open: 9, close: 22 },        // Sexta: 20h às 22h
     6: { open: 10, close: 19 }         // Sábado: 10h às 19h
 };
 
 // Carrinho de Compras
 let cart = JSON.parse(localStorage.getItem('lancheriaCart')) || [];
 let isOpen = false;
+let taxaEntrega = 0;
+let bairroEntrega = "";
 
 // Verificar horário de funcionamento
 function checkBusinessHours() {
@@ -76,6 +78,62 @@ function saveCart() {
     localStorage.setItem('lancheriaCart', JSON.stringify(cart));
 }
 
+// Função para formatar CEP
+function formatarCEP(cep) {
+    cep = cep.replace(/\D/g, '');
+    if (cep.length > 5) {
+        cep = cep.replace(/^(\d{5})(\d)/, '$1-$2');
+    }
+    return cep;
+}
+
+// Função para validar CEP
+function validarCEP(cep) {
+    cep = cep.replace(/\D/g, '');
+    return cep.length === 8;
+}
+
+// Função para converter CEP para número
+function cepParaNumero(cep) {
+    return parseInt(cep.replace(/\D/g, ''), 10);
+}
+
+// Função para validar se o CEP é de Jaú
+function validarCEPJau(cep) {
+    const cepNumero = cepParaNumero(cep);
+    return cepNumero >= 17200000 && cepNumero <= 17214999;
+}
+
+// Função para mostrar mensagens de erro do CEP
+function mostrarErroCEP(mensagem) {
+    const cepInput = document.getElementById('cep');
+    const errorDiv = document.getElementById('cepError') || document.createElement('div');
+    
+    errorDiv.id = 'cepError';
+    errorDiv.className = 'invalid-feedback';
+    errorDiv.textContent = mensagem;
+    
+    if (!document.getElementById('cepError')) {
+        cepInput.parentNode.appendChild(errorDiv);
+    }
+    
+    cepInput.classList.add('is-invalid');
+    document.getElementById('taxaEntregaField').style.display = 'none';
+    taxaEntrega = 0;
+    atualizarTotalComTaxa();
+}
+
+// Função para atualizar o total com a taxa de entrega
+function atualizarTotalComTaxa() {
+    const cartTotal = document.getElementById('cartTotal');
+    const subtotal = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+    const total = subtotal + taxaEntrega;
+    
+    if (cartTotal) {
+        cartTotal.textContent = formatMoney(total);
+    }
+}
+
 // Função para atualizar o carrinho na interface
 function updateCart() {
     const cartItems = document.getElementById('cartItems');
@@ -86,11 +144,20 @@ function updateCart() {
     if (cartItems) cartItems.innerHTML = '';
     
     // Adiciona cada item
-    let total = 0;
-    cart.forEach((item, index) => {
-        total += item.price * item.quantity;
-        
-        if (cartItems) {
+    let subtotal = 0;
+    
+    if (cart.length === 0) {
+        // Mostrar mensagem quando o carrinho estiver vazio
+        cartItems.innerHTML = `
+            <div class="text-center py-4">
+                <i class="fas fa-shopping-cart fa-3x text-muted mb-3"></i>
+                <p class="text-muted">Seu carrinho está vazio</p>
+            </div>
+        `;
+    } else {
+        cart.forEach((item, index) => {
+            subtotal += item.price * item.quantity;
+            
             const itemElement = document.createElement('div');
             itemElement.className = 'cart-item';
             itemElement.innerHTML = `
@@ -106,10 +173,11 @@ function updateCart() {
                 </div>
             `;
             cartItems.appendChild(itemElement);
-        }
-    });
+        });
+    }
     
-    // Atualiza total e contador
+    // Atualiza total e contador (agora inclui taxa de entrega)
+    const total = subtotal + taxaEntrega;
     if (cartTotal) cartTotal.textContent = formatMoney(total);
     if (cartCount) cartCount.textContent = cart.reduce((sum, item) => sum + item.quantity, 0);
     
@@ -123,8 +191,14 @@ function updateCart() {
             showAlert('Item removido do carrinho!', 'danger');
         });
     });
+    
+    // Ajustar a altura máxima baseada no número de itens
+    if (cart.length > 3) {
+        cartItems.style.maxHeight = '300px';
+    } else {
+        cartItems.style.maxHeight = 'none';
+    }
 }
-
 // Função para adicionar itens ao carrinho
 function addToCart(name, price) {
     // Verificar se está aberto antes de adicionar ao carrinho
@@ -176,13 +250,13 @@ document.addEventListener('DOMContentLoaded', function() {
     updateStatus();
     
     // Adicionar informação de horário atual
-const statusInfo = document.createElement('div');
-statusInfo.className = 'status-info small mt-1';
-statusInfo.style.color = '#ffffff'; // Texto branco
-statusInfo.style.fontWeight = '500';
-statusInfo.style.textShadow = '1px 1px 2px rgba(0, 0, 0, 0.5)'; // Sombra para melhor contraste
-statusInfo.textContent = getBusinessHoursMessage();
-document.getElementById('statusText').parentNode.appendChild(statusInfo);
+    const statusInfo = document.createElement('div');
+    statusInfo.className = 'status-info small mt-1';
+    statusInfo.style.color = '#ffffff';
+    statusInfo.style.fontWeight = '500';
+    statusInfo.style.textShadow = '1px 1px 2px rgba(0, 0, 0, 0.5)';
+    statusInfo.textContent = getBusinessHoursMessage();
+    document.getElementById('statusText').parentNode.appendChild(statusInfo);
     
     // Atualiza o carrinho ao carregar a página
     updateCart();
@@ -190,12 +264,6 @@ document.getElementById('statusText').parentNode.appendChild(statusInfo);
     // Adiciona eventos para os botões "Adicionar" - método melhorado
     function setupAddToCartButtons() {
         // Para cards na página inicial
-        document.querySelectorAll('.card .add-to-cart').forEach(button => {
-            // Remover event listeners antigos para evitar duplicação
-            button.replaceWith(button.cloneNode(true));
-        });
-        
-        // Adicionar novos event listeners
         document.querySelectorAll('.card .add-to-cart').forEach(button => {
             button.addEventListener('click', function(e) {
                 e.stopPropagation(); // Impedir que o evento se propague para o card
@@ -207,11 +275,6 @@ document.getElementById('statusText').parentNode.appendChild(statusInfo);
         });
         
         // Para itens na página de cardápio
-        document.querySelectorAll('.list-group .add-to-cart').forEach(button => {
-            // Remover event listeners antigos
-            button.replaceWith(button.cloneNode(true));
-        });
-        
         document.querySelectorAll('.list-group .add-to-cart').forEach(button => {
             button.addEventListener('click', function(e) {
                 e.stopPropagation(); // Impedir que o evento se propague para o item da lista
@@ -236,19 +299,12 @@ document.getElementById('statusText').parentNode.appendChild(statusInfo);
                 changeField.style.display = this.value === 'Dinheiro' ? 'block' : 'none';
                 if (trocoInput) {
                     trocoInput.required = this.value === 'Dinheiro';
-                    
-                    // Validação imediata ao mudar o método de pagamento
-                    if (this.value === 'Dinheiro' && trocoInput.value) {
-                        validateTroco();
-                    }
                 }
             }
         });
         
         // Configura estado inicial
-        if (paymentSelect.value) {
-            paymentSelect.dispatchEvent(new Event('change'));
-        }
+        paymentSelect.dispatchEvent(new Event('change'));
     }
     
     // Validação do campo de troco
@@ -257,33 +313,58 @@ document.getElementById('statusText').parentNode.appendChild(statusInfo);
             // Formata o valor enquanto digita
             this.value = this.value.replace(/[^0-9.]/g, '');
         });
-        
-        trocoInput.addEventListener('blur', validateTroco);
     }
     
-    // Função para validar o valor do troco
-    function validateTroco() {
-        if (paymentSelect && paymentSelect.value === 'Dinheiro' && trocoInput && trocoInput.value) {
-            const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
-            const trocoValue = parseFloat(trocoInput.value);
+    // Adicionar evento para o campo CEP
+    const cepInput = document.getElementById('cep');
+    if (cepInput) {
+        cepInput.addEventListener('input', function(e) {
+            // Formatar CEP enquanto digita
+            this.value = formatarCEP(this.value);
             
-            if (isNaN(trocoValue) || trocoValue < total) {
-                showAlert(`O valor para troco deve ser maior ou igual ao total (${formatMoney(total)})`, 'danger');
-                trocoInput.focus();
-                return false;
+            // Remove mensagens de erro anteriores
+            this.classList.remove('is-invalid');
+            const errorDiv = document.getElementById('cepError');
+            if (errorDiv) errorDiv.remove();
+            
+            // Validar e calcular taxa quando o CEP estiver completo
+            if (validarCEP(this.value)) {
+                if (validarCEPJau(this.value)) {
+                    // Simular cálculo de taxa (substitua pela sua função real)
+                    taxaEntrega = 8.00;
+                    bairroEntrega = "JARDIM SAO JORGE";
+                    
+                    // Mostrar a taxa de entrega
+                    document.getElementById('taxaEntregaValor').textContent = formatMoney(taxaEntrega);
+                    document.getElementById('taxaEntregaBairro').textContent = bairroEntrega;
+                    document.getElementById('taxaEntregaField').style.display = 'block';
+                    
+                    // Atualizar o total
+                    atualizarTotalComTaxa();
+                } else {
+                    mostrarErroCEP('Atendemos apenas na cidade de Jaú/SP');
+                }
+            } else {
+                // Esconder a taxa se o CEP não for válido
+                document.getElementById('taxaEntregaField').style.display = 'none';
+                taxaEntrega = 0;
+                atualizarTotalComTaxa();
             }
-        }
-        return true;
+        });
+        
+        cepInput.addEventListener('blur', function() {
+            if (!validarCEP(this.value)) {
+                mostrarErroCEP('CEP inválido');
+            } else if (!validarCEPJau(this.value)) {
+                mostrarErroCEP('Atendemos apenas na cidade de Jaú/SP');
+            }
+        });
     }
     
     // Enviar pedido via WhatsApp
     const sendOrderBtn = document.getElementById('sendOrderBtn');
     if (sendOrderBtn) {
-        // Remover event listener antigo
-        sendOrderBtn.replaceWith(sendOrderBtn.cloneNode(true));
-        
-        // Adicionar novo event listener
-        document.getElementById('sendOrderBtn').addEventListener('click', function() {
+        sendOrderBtn.addEventListener('click', function() {
             // Verificar se está aberto antes de enviar pedido
             if (!isOpen) {
                 $('#closedModal').modal('show');
@@ -292,6 +373,20 @@ document.getElementById('statusText').parentNode.appendChild(statusInfo);
             
             const form = document.getElementById('orderForm');
             if (!form) return;
+            
+            // Validação do CEP
+            const cepInput = document.getElementById('cep');
+            if (!validarCEP(cepInput.value)) {
+                mostrarErroCEP('Por favor, digite um CEP válido!');
+                cepInput.focus();
+                return;
+            }
+            
+            if (!validarCEPJau(cepInput.value)) {
+                mostrarErroCEP('Atendemos apenas na cidade de Jaú/SP');
+                cepInput.focus();
+                return;
+            }
             
             // Validação básica dos campos
             const inputs = form.querySelectorAll('input, select');
@@ -305,11 +400,6 @@ document.getElementById('statusText').parentNode.appendChild(statusInfo);
                     input.classList.remove('is-invalid');
                 }
             });
-            
-            // Validação específica do troco
-            if (paymentSelect && paymentSelect.value === 'Dinheiro' && !validateTroco()) {
-                isValid = false;
-            }
             
             if (!isValid) {
                 showAlert('Preencha todos os campos obrigatórios corretamente!', 'danger');
@@ -336,12 +426,18 @@ document.getElementById('statusText').parentNode.appendChild(statusInfo);
             message += `- ${item.quantity}x ${item.name} (${formatMoney(item.price * item.quantity)})\n`;
         });
         
-        const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
-        message += `\n*Total: ${formatMoney(total)}*\n\n`;
+        const subtotal = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+        const total = subtotal + taxaEntrega;
+        
+        message += `\n*Subtotal: ${formatMoney(subtotal)}*\n`;
+        message += `*Taxa de entrega: ${formatMoney(taxaEntrega)} (${bairroEntrega})*\n`;
+        message += `*Total: ${formatMoney(total)}*\n\n`;
         message += `*Dados do Cliente:*\n`;
         message += `Nome: ${form.querySelector('input[type="text"]').value}\n`;
         message += `WhatsApp: ${form.querySelector('input[type="tel"]').value}\n`;
         message += `Endereço: ${form.querySelector('input[placeholder="Endereço Completo"]').value}\n`;
+        message += `CEP: ${document.getElementById('cep').value}\n`;
+        message += `Bairro: ${bairroEntrega}\n`;
         message += `Pagamento: ${form.querySelector('select').value}\n`;
         
         if (form.querySelector('select').value === 'Dinheiro' && trocoInput && trocoInput.value) {
@@ -352,16 +448,19 @@ document.getElementById('statusText').parentNode.appendChild(statusInfo);
         
         // Codifica a mensagem para URL
         const encodedMessage = encodeURIComponent(message);
-        const phoneNumber = '14998947758'; // Substitua pelo seu número
+        const phoneNumber = '14998947758';
         
         // Abre o WhatsApp
         window.open(`https://wa.me/${phoneNumber}?text=${encodedMessage}`, '_blank');
         
         // Limpa o carrinho após enviar
         cart = [];
+        taxaEntrega = 0;
+        bairroEntrega = "";
         saveCart();
         updateCart();
         form.reset();
+        document.getElementById('taxaEntregaField').style.display = 'none';
         $('#cartModal').modal('hide');
         showAlert('Pedido enviado com sucesso! Entraremos em contato para confirmação.');
     }
@@ -371,11 +470,6 @@ document.getElementById('statusText').parentNode.appendChild(statusInfo);
         document.querySelectorAll('.card, .list-group-item').forEach(item => {
             item.style.cursor = 'pointer';
             
-            // Remover event listeners antigos
-            item.replaceWith(item.cloneNode(true));
-        });
-        
-        document.querySelectorAll('.card, .list-group-item').forEach(item => {
             item.addEventListener('click', function(e) {
                 // Não abrir modal se clicar no botão de adicionar
                 if (e.target.classList.contains('add-to-cart') || 
@@ -400,10 +494,6 @@ document.getElementById('statusText').parentNode.appendChild(statusInfo);
                     }
                     
                     // Configurar botão de adicionar
-                    const addButton = document.getElementById('productModalAddBtn');
-                    // Remover event listener antigo
-                    addButton.replaceWith(addButton.cloneNode(true));
-                    
                     document.getElementById('productModalAddBtn').onclick = function() {
                         const priceValue = price.textContent.replace('R$ ', '').replace(',', '.');
                         addToCart(title.textContent, priceValue);
