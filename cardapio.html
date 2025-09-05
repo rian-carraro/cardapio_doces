@@ -15,24 +15,32 @@
         <span id="statusText"></span>
     </div>
 
+    <!-- Navbar -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
         <div class="container">
-            <a class="navbar-brand" href="index.html">LR Gourmet</a>
-            <button class="navbar-toggler ml-auto" type="button" data-toggle="collapse" data-target="#navbarNav">
-                <span class="navbar-toggler-icon"></span>
+            <a class="navbar-brand" href="index.html">
+                <img src="LOGOS 80x80 px.svg" alt="LR Gourmet" class="brand-logo">
+                LR Gourmet
+            </a>
+            <button class="navbar-toggler custom-toggler ml-auto" type="button" data-toggle="collapse" data-target="#navbarNav">
+                <span class="navbar-toggler-icon">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav mx-auto">
-                    <li class="nav-item">
+                    <li class="nav-item active">
                         <a class="nav-link" href="index.html">Home</a>
                     </li>
-                    <li class="nav-item active">
+                    <li class="nav-item">
                         <a class="nav-link" href="cardapio.html">Cardápio</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="horarios.html">Horários</a>
                     </li>
-                     <!--<li class="nav-item">
+                      <!--<li class="nav-item">
                         <a class="nav-link" href="contato.html">Contato</a>
                     </li>
                     <li class="nav-item">
@@ -257,52 +265,66 @@
     </section>
 
     <!-- Modal do Carrinho -->
-    <div class="modal fade" id="cartModal" tabindex="-1" aria-hidden="true">
-        <div class="modal-dialog modal-lg">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">🛒 Seu Pedido</h5>
-                    <button type="button" class="close" data-dismiss="modal">
-                        <span>&times;</span>
-                    </button>
+<div class="modal fade" id="cartModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">🛒 Seu Pedido</h5>
+                <button type="button" class="close" data-dismiss="modal">
+                    <span>&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div id="cartItems" class="mb-3">
+                    <!-- Itens serão adicionados aqui via JS -->
                 </div>
-                <div class="modal-body">
-                    <div id="cartItems" class="mb-3">
-                        <!-- Itens serão adicionados aqui via JS -->
-                    </div>
-                    <hr>
+                
+                <div class="cart-summary border-top pt-3">
                     <h5>Total: <span id="cartTotal">R$ 0,00</span></h5>
+                </div>
+                
+                <form id="orderForm" class="mt-4">
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Seu Nome" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="tel" class="form-control" placeholder="WhatsApp (com DDD)" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Endereço Completo" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" class="form-control" id="cep" placeholder="Digite seu CEP" required maxlength="9">
+                        <small class="form-text text-muted">Digite seu CEP para calcular a taxa de entrega</small>
+                    </div>
                     
-                    <form id="orderForm" class="mt-4">
-                        <div class="form-group">
-                            <input type="text" class="form-control" placeholder="Seu Nome" required>
+                    <div class="form-group" id="taxaEntregaField" style="display: none;">
+                        <label>Taxa de Entrega</label>
+                        <div class="alert alert-info" id="taxaEntregaInfo">
+                            <span id="taxaEntregaValor">R$ 0,00</span> - <span id="taxaEntregaBairro"></span>
                         </div>
-                        <div class="form-group">
-                            <input type="tel" class="form-control" placeholder="WhatsApp (com DDD)" required>
-                        </div>
-                        <div class="form-group">
-                            <input type="text" class="form-control" placeholder="Endereço Completo" required>
-                        </div>
-                        <div class="form-group">
-                            <select class="form-control" required>
-                                <option value="">Forma de Pagamento</option>
-                                <option value="Cartão">Cartão</option>
-                                <option value="PIX">PIX</option>
-                                <option value="Dinheiro">Dinheiro</option>
-                            </select>
-                        </div>
-                        <div class="form-group" id="changeField" style="display: none;">
-                            <input type="text" class="form-control" placeholder="Valor para troco">
-                        </div>
-                    </form>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Continuar Comprando</button>
-                    <button type="button" id="sendOrderBtn" class="btn btn-success">Enviar Pedido</button>
-                </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <select class="form-control" required>
+                            <option value="">Forma de Pagamento</option>
+                            <option value="Cartão">Cartão</option>
+                            <option value="PIX">PIX</option>
+                            <option value="Dinheiro">Dinheiro</option>
+                        </select>
+                    </div>
+                    <div class="form-group" id="changeField" style="display: none;">
+                        <input type="text" class="form-control" placeholder="Valor para troco">
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Continuar Comprando</button>
+                <button type="button" id="sendOrderBtn" class="btn btn-success">Enviar Pedido</button>
             </div>
         </div>
     </div>
+</div>
 
     <!-- Modal para Produtos (Mobile) -->
     <div class="modal fade mobile-modal" id="productModal" tabindex="-1" aria-hidden="true">
@@ -356,15 +378,15 @@
         <span class="cart-count">0</span>
     </div>
 
-    <footer class="bg-dark text-white py-4">
+    <!-- Rodapé -->
+    <footer >
         <div class="container text-center">
             <h4>Siga-nos!</h4>
-            <div class="social-icons my-3">
-                <a href="#" class="text-white mx-2"><i class="fab fa-facebook-f fa-2x"></i></a>
-                <a href="#" class="text-white mx-2"><i class="fab fa-instagram fa-2x"></i></a>
-                <a href="#" class="text-white mx-2"><i class="fab fa-whatsapp fa-2x"></i></a>
+            <div class="social-icons my-3">                
+                <a href="https://www.instagram.com/lrgourmet_?utm_source=ig_web_button_share_sheet&igsh=MTF5b2t5N2pjZHltNw==" class="text-black mx-2"><i class="fab fa-instagram fa-2x"></i></a>
+                <a href="https://wa.me/5514998947758" class="text-black mx-2"><i class="fab fa-whatsapp fa-2x"></i></a>
             </div>
-            <p>&copy; 2023 LR Gourmet. Todos os direitos reservados.</p>
+            <p>&copy; 2025 LR Gourmet. Todos os direitos reservados.</p>
         </div>
     </footer>
 
@@ -372,5 +394,6 @@
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script src="script.js"></script>
+    <script src="entregas.js"></script>
 </body>
 </html>
