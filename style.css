@@ -21,6 +21,7 @@ body {
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
     animation: slideInDown 0.5s ease-out;
     max-width: 90%;
+    white-space: nowrap;
 }
 
 .status-open {
@@ -124,6 +125,7 @@ body {
 
 /* cor do nome da empresa */
 .navbar-brand {
+    font-family: 'Eczar', serif;
     font-weight: 700;
     font-size: 1.8rem;
     color: rgb(0, 0, 0) !important;
@@ -226,14 +228,14 @@ h4{
     transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     border-radius: 12px;
     overflow: hidden;
-    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.08);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
     margin-bottom: 1.5rem;
     background-color: white;
 }
 
 .card:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 12px 25px rgba(0, 0, 0, 0.12);
+    transform: translateY(-8px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
 }
 
 .card-img-top {
@@ -258,8 +260,26 @@ h4{
 
 /* Cor personalizada para o bloco de Doces */
 .card-header.bg-doces {
-    background-color: #ff6b9d !important;
-    background: linear-gradient(135deg, #ff2870, #c44569) !important;
+    background-color: #51e5ff !important;
+    background: linear-gradient(135deg, #51e5ff, #2e8291) !important;
+}
+
+/* Cor personalizada para o bloco de Trufas */
+.card-header.bg-trufas {
+    background-color: #51e5ff !important;
+    background: linear-gradient(135deg, #51e5ff, #2e8291) !important;
+}
+
+/* Cor personalizada para o bloco de Trufas ao Leite */
+.card-header.bg-trufas-leite {
+    background-color: #51e5ff !important;
+    background: linear-gradient(135deg, #51e5ff, #2e8291) !important;
+}
+
+/* Cor personalizada para o bloco de Trufas Brancas */
+.card-header.bg-trufas-brancas {
+    background-color: #51e5ff !important;
+    background: linear-gradient(135deg, #51e5ff, #2e8291) !important;
 }
 
 .card-body {
@@ -549,6 +569,9 @@ footer h4 {
     padding: 1.2rem 1.5rem;
     border: none;
     border-bottom: 1px solid #f0f0f0 !important;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    margin-bottom: 8px;
+    border-radius: 8px;
 }
 
 .list-group-item:last-child {
@@ -558,6 +581,7 @@ footer h4 {
 .list-group-item:hover {
     background-color: #fff5f5;
     transform: translateX(5px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
 }
 
 .list-group-item h5 {
@@ -647,12 +671,14 @@ footer h4 {
 @media (max-width: 576px) {
   #statusBar,
   .status-bar {
-    font-size: 0.89rem;
-    padding: 12px 18px;
+    font-size: 0.8rem;
+    padding: 10px 16px;
     border-radius: 50px;
-    max-width: 100vw;
+    max-width: 95vw;
     margin-top: 10px;
-    
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 }
 
