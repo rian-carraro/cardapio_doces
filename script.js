@@ -310,9 +310,97 @@ document.addEventListener('DOMContentLoaded', function() {
     // Validação do campo de troco
     if (trocoInput) {
         trocoInput.addEventListener('input', function() {
-            // Formata o valor enquanto digita
-            this.value = this.value.replace(/[^0-9.]/g, '');
+            // Remove caracteres não numéricos exceto ponto e vírgula
+            let value = this.value.replace(/[^0-9.,]/g, '');
+            
+            // Substitui vírgula por ponto
+            value = value.replace(',', '.');
+            
+            // Permite apenas um ponto decimal
+            const parts = value.split('.');
+            if (parts.length > 2) {
+                value = parts[0] + '.' + parts.slice(1).join('');
+            }
+            
+            this.value = value;
+            
+            // Formata visualmente com R$ quando o usuário para de digitar
+            clearTimeout(this.formatTimeout);
+            this.formatTimeout = setTimeout(() => {
+                if (this.value && !this.value.startsWith('R$')) {
+                    const numericValue = parseFloat(this.value);
+                    if (!isNaN(numericValue)) {
+                        this.value = `R$ ${numericValue.toFixed(2).replace('.', ',')}`;
+                    }
+                }
+            }, 1000);
         });
+        
+        // Remove R$ quando o usuário começa a digitar
+        trocoInput.addEventListener('focus', function() {
+            if (this.value.startsWith('R$')) {
+                this.value = this.value.replace('R$ ', '').replace(',', '.');
+            }
+        });
+        
+        // Valida se o valor é suficiente
+        trocoInput.addEventListener('blur', function() {
+            validarValorTroco();
+        });
+    }
+    
+    // Função para validar valor do troco
+    function validarValorTroco() {
+        const trocoInput = document.getElementById('changeField');
+        if (!trocoInput || !trocoInput.style.display || trocoInput.style.display === 'none') {
+            return true;
+        }
+        
+        const trocoValue = document.querySelector('input[placeholder="Valor para troco"]');
+        if (!trocoValue || !trocoValue.value) {
+            return true;
+        }
+        
+        // Remove R$ e converte para número
+        const valorTroco = parseFloat(trocoValue.value.replace('R$ ', '').replace(',', '.'));
+        const subtotal = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+        const total = subtotal + taxaEntrega;
+        
+        if (isNaN(valorTroco)) {
+            mostrarErroTroco('Por favor, digite um valor válido');
+            return false;
+        }
+        
+        if (valorTroco < total) {
+            mostrarErroTroco(`O valor para troco (R$ ${valorTroco.toFixed(2).replace('.', ',')}) deve ser maior que o total do pedido (R$ ${total.toFixed(2).replace('.', ',')})`);
+            return false;
+        }
+        
+        // Remove erro se válido
+        trocoValue.classList.remove('is-invalid');
+        const errorDiv = document.getElementById('trocoError');
+        if (errorDiv) errorDiv.remove();
+        
+        return true;
+    }
+    
+    // Função para mostrar erro no campo troco
+    function mostrarErroTroco(mensagem) {
+        const trocoValue = document.querySelector('input[placeholder="Valor para troco"]');
+        if (trocoValue) {
+            trocoValue.classList.add('is-invalid');
+            
+            // Remove erro anterior
+            const errorDiv = document.getElementById('trocoError');
+            if (errorDiv) errorDiv.remove();
+            
+            // Adiciona novo erro
+            const errorElement = document.createElement('div');
+            errorElement.id = 'trocoError';
+            errorElement.className = 'invalid-feedback';
+            errorElement.textContent = mensagem;
+            trocoValue.parentNode.appendChild(errorElement);
+        }
     }
     
     // Adicionar evento para o campo CEP
@@ -406,6 +494,12 @@ document.addEventListener('DOMContentLoaded', function() {
                 return;
             }
             
+            // Validação do valor do troco
+            if (!validarValorTroco()) {
+                showAlert('Por favor, corrija o valor do troco', 'danger');
+                return;
+            }
+            
             if (cart.length === 0) {
                 showAlert('Adicione itens ao carrinho primeiro!', 'danger');
                 return;
@@ -441,7 +535,13 @@ document.addEventListener('DOMContentLoaded', function() {
         message += `Pagamento: ${form.querySelector('select').value}\n`;
         
         if (form.querySelector('select').value === 'Dinheiro' && trocoInput && trocoInput.value) {
-            message += `Troco para: ${formatMoney(trocoInput.value)}\n`;
+            const valorTroco = parseFloat(trocoInput.value.replace('R$ ', '').replace(',', '.'));
+            const trocoDevolver = valorTroco - total;
+            
+            message += `\n*💰 INFORMAÇÕES DE PAGAMENTO:*\n`;
+            message += `Valor do pedido: ${formatMoney(total)}\n`;
+            message += `Cliente pagará: ${formatMoney(valorTroco)}\n`;
+            message += `Troco a devolver: ${formatMoney(trocoDevolver)}\n`;
         }
         
         message += `\n*Horário:* ${new Date().toLocaleString()}`;
@@ -465,47 +565,8 @@ document.addEventListener('DOMContentLoaded', function() {
         showAlert('Pedido enviado com sucesso! Entraremos em contato para confirmação.');
     }
     
-    // Configurar modal para produtos em dispositivos móveis
-    if (window.innerWidth <= 768) {
-        document.querySelectorAll('.card, .list-group-item').forEach(item => {
-            item.style.cursor = 'pointer';
-            
-            item.addEventListener('click', function(e) {
-                // Não abrir modal se clicar no botão de adicionar
-                if (e.target.classList.contains('add-to-cart') || 
-                    e.target.closest('.add-to-cart')) {
-                    return;
-                }
-                
-                const card = this.closest('.card') || this;
-                const title = card.querySelector('.card-title') || card.querySelector('h5');
-                const description = card.querySelector('.card-text') || card.querySelector('p');
-                const price = card.querySelector('.price');
-                const image = card.querySelector('.card-img-top') || card.querySelector('img');
-                
-                if (title && description && price) {
-                    document.getElementById('productModalTitle').textContent = title.textContent;
-                    document.getElementById('productModalDescription').textContent = description.textContent;
-                    document.getElementById('productModalPrice').textContent = price.textContent;
-                    
-                    if (image) {
-                        document.getElementById('productModalImage').src = image.src;
-                        document.getElementById('productModalImage').alt = image.alt;
-                    }
-                    
-                    // Configurar botão de adicionar
-                    document.getElementById('productModalAddBtn').onclick = function() {
-                        const priceValue = price.textContent.replace('R$ ', '').replace(',', '.');
-                        addToCart(title.textContent, priceValue);
-                        $('#productModal').modal('hide');
-                    };
-                    
-                    $('#productModal').modal('show');
-                }
-            });
-        });
-    }
 });
+
 
 // Verifica se há itens no carrinho ao carregar a página
 window.addEventListener('load', function() {
