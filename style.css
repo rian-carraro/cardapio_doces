@@ -102,14 +102,7 @@ body {
     transform: rotate(-135deg);
 }
 
-/* Ajustar o padding do body */
-body {
-    padding-top: 10px; /* Apenas a altura da navbar */
-    font-family: 'Poppins', sans-serif;
-    background-color: #fff9f5;
-    color: #333;
-    line-height: 1.6;
-}
+/* Ajustar o padding do body - removido duplicação */
 
 /* Navbar Moderna */
 .navbar {
@@ -351,11 +344,53 @@ h4{
     padding: 0.8rem 1.2rem;
     border: 2px solid #eee;
     transition: all 0.3s;
+    background-color: white;
+    color: #333;
 }
 
 .form-control:focus {
     border-color: #e63946;
     box-shadow: 0 0 0 0.2rem rgba(230, 57, 70, 0.15);
+    background-color: white;
+}
+
+/* Fix para select dropdown */
+select.form-control {
+    background-color: white !important;
+    color: #333 !important;
+    appearance: auto;
+    font-size: 16px !important;
+    line-height: 1.5 !important;
+    height: auto !important;
+    min-height: 48px !important;
+}
+
+select.form-control option {
+    background-color: white !important;
+    color: #333 !important;
+    padding: 8px 12px !important;
+    font-size: 16px !important;
+    display: block !important;
+}
+
+/* Override Bootstrap select styles */
+.form-control select,
+select.form-control,
+#orderForm select {
+    background-color: #fff !important;
+    color: #495057 !important;
+    border: 1px solid #ced4da !important;
+    font-size: 1rem !important;
+    font-weight: 400 !important;
+    line-height: 1.5 !important;
+    padding: 0.375rem 0.75rem !important;
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='m6 8 4 4 4-4'/%3e%3c/svg%3e") !important;
+    background-position: right 0.75rem center !important;
+    background-repeat: no-repeat !important;
+    background-size: 16px 12px !important;
+    -webkit-appearance: none !important;
+    -moz-appearance: none !important;
+    appearance: none !important;
 }
 
 /* Rodapé */
@@ -390,56 +425,87 @@ footer h4 {
 /* Carrinho Flutuante */
 .cart-floating-btn {
     position: fixed;
-    bottom: 30px;
-    right: 30px;
-    background: linear-gradient(135deg, #51e5ff, #2e8291);
-    color: rgb(0, 0, 0);
-    width: 70px;
-    height: 70px;
+    bottom: 20px;
+    right: 20px;
+    background-color: #2e8291;
+    color: white;
     border-radius: 50%;
-    display: flex;
+    width: 60px;
+    height: 60px;
+    display: flex; /* Sempre visível */
     align-items: center;
     justify-content: center;
-    font-size: 1.8rem;
-    box-shadow: 0 6px 20px rgba(230, 57, 70, 0.4);
     cursor: pointer;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.3);
     z-index: 1000;
-    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    animation: pulse 2s infinite;
+    transition: all 0.3s ease;
+    animation: cart-pulse 2s ease-in-out infinite;
 }
 
 .cart-floating-btn:hover {
-    transform: scale(1.1) rotate(5deg);
-    box-shadow: 0 8px 25px rgba(230, 57, 70, 0.5);
+    background-color: #1a5f6b;
+    transform: scale(1.1);
+}
+
+.cart-floating-btn i {
+    font-size: 1.5rem;
 }
 
 .cart-count {
     position: absolute;
     top: -5px;
     right: -5px;
-    background: #343a40;
+    background-color: #dc3545;
     color: white;
-    width: 28px;
-    height: 28px;
     border-radius: 50%;
-    font-size: 0.9rem;
-    display: flex;
+    width: 25px;
+    height: 25px;
+    display: flex; /* Sempre visível */
     align-items: center;
     justify-content: center;
+    font-size: 0.8rem;
     font-weight: bold;
-    border: 2px solid white;
 }
 
-@keyframes pulse {
+/* Animação de pulso do botão do carrinho */
+@keyframes cart-pulse {
     0% {
-        box-shadow: 0 0 0 0 rgba(230, 57, 70, 0.7);
+        transform: scale(1);
+        box-shadow: 0 4px 12px rgba(0,0,0,0.30), 0 0 0 0 rgba(46,130,145,0.45);
     }
-    70% {
-        box-shadow: 0 0 0 12px rgba(230, 57, 70, 0);
+    50% {
+        transform: scale(1.06);
+        box-shadow: 0 6px 16px rgba(0,0,0,0.35), 0 0 0 12px rgba(46,130,145,0);
     }
     100% {
-        box-shadow: 0 0 0 0 rgba(230, 57, 70, 0);
+        transform: scale(1);
+        box-shadow: 0 4px 12px rgba(0,0,0,0.30), 0 0 0 0 rgba(46,130,145,0);
     }
+}
+
+/* Botão Dashboard Inline */
+.dashboard-btn-inline {
+    margin-left: 8px;
+    color: #6c757d;
+    text-decoration: none;
+    font-size: 0.9rem;
+    opacity: 0.4;
+    transition: all 0.3s ease;
+    display: inline-block;
+    padding: 2px 4px;
+    border-radius: 3px;
+}
+
+.dashboard-btn-inline:hover {
+    color: #2e8291;
+    text-decoration: none;
+    opacity: 1;
+    transform: scale(1.1);
+}
+
+.dashboard-btn-inline:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(46, 130, 145, 0.3);
 }
 
 /* Modal do Carrinho com Rolagem */
@@ -572,6 +638,30 @@ footer h4 {
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
     margin-bottom: 8px;
     border-radius: 8px;
+}
+
+/* Estado visual para produto indisponível */
+.product-unavailable {
+    opacity: 0.55;
+    filter: grayscale(100%);
+}
+
+.product-unavailable .btn,
+.add-to-cart:disabled,
+.add-to-cart.disabled {
+    cursor: not-allowed !important;
+    opacity: 0.7 !important;
+}
+
+.add-to-cart:disabled {
+    background-color: #adb5bd !important;
+    border-color: #adb5bd !important;
+    color: #ffffff !important;
+}
+
+.unavailable-badge {
+    margin-left: 12px;
+    vertical-align: middle;
 }
 
 .list-group-item:last-child {

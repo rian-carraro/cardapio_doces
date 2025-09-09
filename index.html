@@ -19,7 +19,6 @@
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
         <div class="container">
             <a class="navbar-brand" href="index.html">
-                <alt="LR Gourmet" class="brand-logo">
                 LR Gourmet
             </a>
             <button class="navbar-toggler custom-toggler ml-auto" type="button" data-toggle="collapse" data-target="#navbarNav">
@@ -127,7 +126,7 @@
 
                             <li class="list-group-item d-flex justify-content-between align-items-center">
                                 <div class="product-with-image">
-                                    <img src="" class="product-image" alt="Pavê de Prestigio">
+                                    <img src="brigadeiro.png" class="product-image" alt="Pavê de Prestigio">
                                     <div class="product-info">
                                         <h5>Pavê de Prestigio</h5>
                                         <p class="mb-1">Brigadeiro de coco, bolachas maizena, e brigadeiro tradicional.</p>
@@ -142,7 +141,7 @@
 
                             <li class="list-group-item d-flex justify-content-between align-items-center">
                                 <div class="product-with-image">
-                                    <img src="" class="product-image" alt="Trufa de Nutella">
+                                    <img src="trufa.svg" class="product-image" alt="Trufa de Nutella">
                                     <div class="product-info">
                                         <h5>Trufa de Nutella</h5>   
                                         <p class="mb-1">Trufa de Nutella.</p>
@@ -239,7 +238,7 @@
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title">🛒 Seu Pedido</h5>
+                <h5 class="modal-title" style="color: #2e8291;">Seu Pedido</h5>
                 <button type="button" class="close" data-dismiss="modal">
                     <span>&times;</span>
                 </button>
@@ -255,36 +254,38 @@
                 
                 <form id="orderForm" class="mt-4">
                     <div class="form-group">
-                        <input type="text" class="form-control" placeholder="Seu Nome" required>
+                        <input type="text" id="nomeInput" class="form-control" placeholder="Seu Nome" required>
                     </div>
                     <div class="form-group">
-                        <input type="tel" class="form-control" placeholder="WhatsApp (com DDD)" required>
+                        <input type="text" id="enderecoInput" class="form-control" placeholder="Endereço Completo" required>
                     </div>
                     <div class="form-group">
-                        <input type="text" class="form-control" placeholder="Endereço Completo" required>
-                    </div>
+                        <input type="text" id="referenciaInput" class="form-control" placeholder="Ponto de referência da sua casa" required>
+                    </div>                    
                     <div class="form-group">
                         <input type="text" class="form-control" id="cep" placeholder="Digite seu CEP" required maxlength="9">
-                        <small class="form-text text-muted">Digite seu CEP para calcular a taxa de entrega</small>
                     </div>
                     
                     <div class="form-group" id="taxaEntregaField" style="display: none;">
                         <label>Taxa de Entrega</label>
                         <div class="alert alert-info" id="taxaEntregaInfo">
-                            <span id="taxaEntregaValor">R$ 0,00</span> - <span id="taxaEntregaBairro"></span>
+                            <span id="taxaEntregaValor">R$ 0,00</span> <span id="taxaEntregaBairro"></span>
                         </div>
                     </div>
                     
                     <div class="form-group">
-                        <select class="form-control" required>
-                            <option value="">Forma de Pagamento</option>
-                            <option value="Cartão">Cartão</option>
-                            <option value="PIX">PIX</option>
-                            <option value="Dinheiro">Dinheiro</option>
+                        <select class="form-control" id="paymentSelect" required style="background-color: white !important; color: #333 !important; font-size: 16px !important;">
+                            <option value="" style="color: #333 !important;">Forma de Pagamento</option>
+                            <option value="Cartão" style="color: #333 !important;">Cartão</option>
+                            <option value="PIX" style="color: #333 !important;">PIX</option>
+                            <option value="Dinheiro" style="color: #333 !important;">Dinheiro</option>
                         </select>
                     </div>
                     <div class="form-group" id="changeField" style="display: none;">
-                        <input type="text" class="form-control" placeholder="Valor para troco">
+                        <input type="text" id="trocoInput" class="form-control" placeholder="Valor para troco">
+                    </div>
+                    <div class="form-group">
+                        <textarea id="observacoesInput" class="form-control" rows="3" placeholder="Observações do pedido (opcional)" style="resize: none; overflow: hidden;"></textarea>
                     </div>
                 </form>
             </div>
@@ -296,6 +297,56 @@
     </div>
 </div>
 
+<!-- Modal de Confirmação de Dados -->
+<div class="modal fade" id="confirmationModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" style="color: #2e8291;">Confirme seus Dados</h5>
+                <button type="button" class="close" data-dismiss="modal">
+                    <span>&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="alert alert-warning">
+                    <strong>⚠️ Atenção!</strong> Verifique se todos os dados estão corretos antes de confirmar o pedido.
+                </div>
+                
+                <div class="row">
+                    <div class="col-md-6">
+                        <h6 class="text-primary">📋 Resumo do Pedido</h6>
+                        <div id="confirmOrderItems" class="mb-3">
+                            <!-- Itens do pedido serão inseridos aqui -->
+                        </div>
+                        <div class="border-top pt-2">
+                            <strong>Total: <span id="confirmTotal">R$ 0,00</span></strong>
+                        </div>
+                    </div>
+                    
+                    <div class="col-md-6">
+                        <h6 class="text-primary">👤 Dados do Cliente</h6>
+                        <div id="confirmCustomerData">
+                            <!-- Dados do cliente serão inseridos aqui -->
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="mt-3 p-3 bg-light rounded">
+                    <p class="mb-1"><strong>❓ Os dados estão corretos?</strong></p>
+                    <small class="text-muted">Após confirmar, seu pedido será enviado via WhatsApp e não poderá ser alterado.</small>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" id="editDataBtn">
+                    <i class="fas fa-edit"></i> Editar Dados
+                </button>
+                <button type="button" class="btn btn-success" id="confirmSendBtn">
+                    <i class="fas fa-check"></i> Confirmar Envio
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
 
     <!-- Modal de Horário (quando fechado) -->
     <div class="modal fade" id="closedModal" tabindex="-1" aria-hidden="true">
@@ -326,7 +377,7 @@
     <!-- Botão do Carrinho Flutuante -->
     <div class="cart-floating-btn" data-toggle="modal" data-target="#cartModal">
         <i class="fas fa-shopping-cart"></i>
-        <span class="cart-count">0</span>
+        <span class="cart-count" id="cartCount">0</span>
     </div>
 
     <!-- Rodapé -->
