@@ -22,8 +22,11 @@ class DashboardManager {
         $('.nav-link').on('click', (e) => this.handleNavigation(e));
         
         // Mobile menu
-        $('#menuToggle').on('click', () => this.toggleSidebar());
-        $('#sidebarToggle').on('click', () => this.toggleSidebar());
+        $('#mobileMenuToggle').on('click', () => this.toggleSidebar());
+        $('#mobileOverlay').on('click', () => this.closeSidebar());
+        $(document).on('keydown', (e) => {
+            if (e.key === 'Escape') this.closeSidebar();
+        });
         
         // Data refresh
         $('#refreshData').on('click', () => this.refreshData());
@@ -1185,6 +1188,14 @@ class DashboardManager {
 
     toggleSidebar() {
         $('.sidebar').toggleClass('show');
+        $('#mobileOverlay').toggleClass('show');
+        $('body').toggleClass('sidebar-open');
+    }
+
+    closeSidebar() {
+        $('.sidebar').removeClass('show');
+        $('#mobileOverlay').removeClass('show');
+        $('body').removeClass('sidebar-open');
     }
 
     refreshData() {
