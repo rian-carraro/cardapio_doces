@@ -119,8 +119,11 @@ body {
     margin-left: var(--sidebar-width);
     min-height: 100vh;
     transition: var(--transition);
+<<<<<<< HEAD
     position: relative;
     z-index: 1;
+=======
+>>>>>>> 6edad049bbe60ad5af6ee02ee3b69a69d9f2f096
 }
 
 .dashboard-header {
@@ -537,6 +540,30 @@ body {
     min-width: 150px;
 }
 
+<<<<<<< HEAD
+=======
+/* Mobile Menu Toggle */
+.mobile-menu-toggle {
+    display: none;
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    z-index: 1001;
+    background: var(--primary-color);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 12px;
+    font-size: 1.2rem;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    transition: var(--transition);
+}
+
+.mobile-menu-toggle:hover {
+    background: var(--secondary-color);
+    transform: scale(1.05);
+}
+>>>>>>> 6edad049bbe60ad5af6ee02ee3b69a69d9f2f096
 
 .mobile-overlay {
     display: none;
@@ -549,7 +576,10 @@ body {
     z-index: 999;
     opacity: 0;
     transition: opacity 0.3s ease;
+<<<<<<< HEAD
     cursor: pointer;
+=======
+>>>>>>> 6edad049bbe60ad5af6ee02ee3b69a69d9f2f096
 }
 
 .mobile-overlay.show {
@@ -592,6 +622,7 @@ body.sidebar-open {
     }
 }
 
+<<<<<<< HEAD
 /* Mobile Menu Button */
 #menuToggle {
     border-radius: 8px;
@@ -630,25 +661,41 @@ body.sidebar-open {
     
     .mobile-overlay {
         display: none;
+=======
+/* Responsive Design - Mobile */
+@media (max-width: 768px) {
+    .mobile-menu-toggle {
+        display: block;
+    }
+    
+    .mobile-overlay {
+        display: block;
+>>>>>>> 6edad049bbe60ad5af6ee02ee3b69a69d9f2f096
     }
     
     .sidebar {
         transform: translateX(-100%);
         width: 280px;
         box-shadow: 2px 0 20px rgba(0,0,0,0.3);
+<<<<<<< HEAD
         transition: transform 0.3s ease;
         z-index: 1000;
+=======
+>>>>>>> 6edad049bbe60ad5af6ee02ee3b69a69d9f2f096
     }
     
     .sidebar.show {
         transform: translateX(0);
     }
     
+<<<<<<< HEAD
     .mobile-overlay.show {
         display: block;
         opacity: 1;
     }
     
+=======
+>>>>>>> 6edad049bbe60ad5af6ee02ee3b69a69d9f2f096
     .main-content {
         margin-left: 0;
         padding-top: 70px;
@@ -789,6 +836,15 @@ body.sidebar-open {
 
 /* Responsive Design - Small Mobile */
 @media (max-width: 576px) {
+<<<<<<< HEAD
+=======
+    .mobile-menu-toggle {
+        top: 15px;
+        left: 15px;
+        padding: 10px;
+        font-size: 1.1rem;
+    }
+>>>>>>> 6edad049bbe60ad5af6ee02ee3b69a69d9f2f096
     
     .sidebar {
         width: 100%;
@@ -945,6 +1001,7 @@ body.sidebar-open {
 }
 
 /* Modal Customizations */
+<<<<<<< HEAD
 .modal {
     z-index: 1050;
 }
@@ -953,6 +1010,8 @@ body.sidebar-open {
     z-index: 1040;
 }
 
+=======
+>>>>>>> 6edad049bbe60ad5af6ee02ee3b69a69d9f2f096
 .modal-content {
     border-radius: var(--border-radius);
     border: none;

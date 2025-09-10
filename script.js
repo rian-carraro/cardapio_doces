@@ -218,6 +218,7 @@ function updateCartDisplay() {
         subtotal += itemTotal;
         
         cartItems.innerHTML += `
+<<<<<<< HEAD
             <div class="cart-item mb-3 p-3 border rounded">
                 <div class="row align-items-center">
                     <div class="col-12 mb-2">
@@ -241,6 +242,23 @@ function updateCartDisplay() {
                             </button>
                         </div>
                     </div>
+=======
+            <div class="cart-item d-flex justify-content-between align-items-center mb-2 p-2 border rounded">
+                <div class="item-info">
+                    <h6 class="mb-1">${item.name}</h6>
+                    <small class="text-muted">R$ ${item.price.toFixed(2)} cada</small>
+                </div>
+                <div class="item-controls d-flex align-items-center">
+                    <button class="btn btn-sm btn-outline-secondary" onclick="updateQuantity(${index}, ${item.quantity - 1})">-</button>
+                    <span class="mx-2">${item.quantity}</span>
+                    <button class="btn btn-sm btn-outline-secondary" onclick="updateQuantity(${index}, ${item.quantity + 1})">+</button>
+                    <button class="btn btn-sm btn-danger ml-2" onclick="removeFromCart(${index})">
+                        <i class="fas fa-trash"></i>
+                    </button>
+                </div>
+                <div class="item-total">
+                    <strong>R$ ${itemTotal.toFixed(2)}</strong>
+>>>>>>> 6edad049bbe60ad5af6ee02ee3b69a69d9f2f096
                 </div>
             </div>
         `;
@@ -433,6 +451,7 @@ document.addEventListener('DOMContentLoaded', function() {
         trocoInput.addEventListener('focus', function() {
             if (this.value.startsWith('R$')) {
                 this.value = this.value.replace('R$ ', '').replace(',', '.');
+<<<<<<< HEAD
             }
         });
         
@@ -526,6 +545,70 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
+=======
+            }
+        });
+        
+        trocoInput.addEventListener('blur', function() {
+            validarValorTroco();
+        });
+    }
+    
+    // Função para validar valor do troco
+    function validarValorTroco() {
+        const trocoInput = document.getElementById('changeField');
+        if (!trocoInput || !trocoInput.style.display || trocoInput.style.display === 'none') {
+            return true;
+        }
+        
+        const trocoValue = document.querySelector('input[placeholder="Valor para troco"]');
+        if (!trocoValue || !trocoValue.value) {
+            return true;
+        }
+        
+        // Remove R$ e converte para número
+        const valorTroco = parseFloat(trocoValue.value.replace('R$ ', '').replace(',', '.'));
+        const subtotal = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+        const total = subtotal + taxaEntrega;
+        
+        if (isNaN(valorTroco)) {
+            mostrarErroTroco('Por favor, digite um valor válido');
+            return false;
+        }
+        
+        if (valorTroco < total) {
+            mostrarErroTroco(`O valor para troco (R$ ${valorTroco.toFixed(2).replace('.', ',')}) deve ser maior que o total do pedido (R$ ${total.toFixed(2).replace('.', ',')})`);
+            return false;
+        }
+        
+        // Remove erro se válido
+        trocoValue.classList.remove('is-invalid');
+        const errorDiv = document.getElementById('trocoError');
+        if (errorDiv) errorDiv.remove();
+        
+        return true;
+    }
+    
+    // Função para mostrar erro no campo troco
+    function mostrarErroTroco(mensagem) {
+        const trocoValue = document.querySelector('input[placeholder="Valor para troco"]');
+        if (trocoValue) {
+            trocoValue.classList.add('is-invalid');
+            
+            // Remove erro anterior
+            const errorDiv = document.getElementById('trocoError');
+            if (errorDiv) errorDiv.remove();
+            
+            // Adiciona novo erro
+            const errorElement = document.createElement('div');
+            errorElement.id = 'trocoError';
+            errorElement.className = 'invalid-feedback';
+            errorElement.textContent = mensagem;
+            trocoValue.parentNode.appendChild(errorElement);
+        }
+    }
+    
+>>>>>>> 6edad049bbe60ad5af6ee02ee3b69a69d9f2f096
     // Adicionar evento para o campo CEP
     const cepInput = document.getElementById('cep');
     if (cepInput) {
@@ -618,6 +701,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 isValid = false;
             } else {
                 enderecoInput.classList.remove('is-invalid');
+<<<<<<< HEAD
                 
                 // Se endereço foi preenchido, validar campos obrigatórios adicionais
                 const bairroInput = document.getElementById('bairroInput');
@@ -642,6 +726,8 @@ document.addEventListener('DOMContentLoaded', function() {
                         numeroInput.classList.remove('is-invalid');
                     }
                 }
+=======
+>>>>>>> 6edad049bbe60ad5af6ee02ee3b69a69d9f2f096
             }
             
             // Validar CEP
@@ -760,8 +846,11 @@ function saveOrderToHistory(orderData) {
         const form = document.getElementById('orderForm');
         const customerName = document.getElementById('nomeInput').value;
         const customerAddress = document.getElementById('enderecoInput').value;
+<<<<<<< HEAD
         const customerBairro = document.getElementById('bairroInput') ? document.getElementById('bairroInput').value : '';
         const customerNumero = document.getElementById('numeroInput') ? document.getElementById('numeroInput').value : '';
+=======
+>>>>>>> 6edad049bbe60ad5af6ee02ee3b69a69d9f2f096
         const customerReference = document.getElementById('referenciaInput').value;
         const customerCep = document.getElementById('cep').value;
         const paymentMethod = document.getElementById('paymentSelect').value;
@@ -784,10 +873,15 @@ function saveOrderToHistory(orderData) {
         message += `Nome: ${customerName}\n`;
         message += `Ponto de Referência: ${customerReference}\n`;
         message += `Endereço: ${customerAddress}\n`;
+<<<<<<< HEAD
         if (customerBairro) message += `Bairro: ${customerBairro}\n`;
         if (customerNumero) message += `Número: ${customerNumero}\n`;
         message += `CEP: ${customerCep}\n`;
         message += `Bairro (Taxa): ${bairroEntrega}\n`;
+=======
+        message += `CEP: ${customerCep}\n`;
+        message += `Bairro: ${bairroEntrega}\n`;
+>>>>>>> 6edad049bbe60ad5af6ee02ee3b69a69d9f2f096
         message += `Pagamento: ${paymentMethod}\n`;
         
         // Adicionar observações se preenchidas
@@ -817,11 +911,17 @@ function saveOrderToHistory(orderData) {
             total: total,
             payment: paymentMethod,
             address: customerAddress,
+<<<<<<< HEAD
             bairro: customerBairro,
             numero: customerNumero,
             reference: customerReference,
             cep: customerCep,
             bairroTaxa: bairroEntrega,
+=======
+            reference: customerReference,
+            cep: customerCep,
+            bairro: bairroEntrega,
+>>>>>>> 6edad049bbe60ad5af6ee02ee3b69a69d9f2f096
             observations: observations
         };
         
@@ -868,6 +968,7 @@ function saveOrderToHistory(orderData) {
         let customerHtml = `
             <p><strong>Nome:</strong> ${document.getElementById('nomeInput').value}</p>
             <p><strong>Endereço:</strong> ${document.getElementById('enderecoInput').value}</p>
+<<<<<<< HEAD
         `;
         
         const bairroInput = document.getElementById('bairroInput');
@@ -883,6 +984,11 @@ function saveOrderToHistory(orderData) {
             <p><strong>Referência:</strong> ${document.getElementById('referenciaInput').value}</p>
             <p><strong>CEP:</strong> ${document.getElementById('cep').value}</p>
             <p><strong>Bairro (Taxa):</strong> ${bairroEntrega}</p>
+=======
+            <p><strong>Referência:</strong> ${document.getElementById('referenciaInput').value}</p>
+            <p><strong>CEP:</strong> ${document.getElementById('cep').value}</p>
+            <p><strong>Bairro:</strong> ${bairroEntrega}</p>
+>>>>>>> 6edad049bbe60ad5af6ee02ee3b69a69d9f2f096
             <p><strong>Pagamento:</strong> ${paymentMethod}</p>
         `;
         

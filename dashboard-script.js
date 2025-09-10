@@ -22,10 +22,14 @@ class DashboardManager {
         $('.nav-link').on('click', (e) => this.handleNavigation(e));
         
         // Mobile menu
+<<<<<<< HEAD
         $('#menuToggle').on('click', (e) => {
             e.preventDefault();
             this.toggleSidebar();
         });
+=======
+        $('#mobileMenuToggle').on('click', () => this.toggleSidebar());
+>>>>>>> 6edad049bbe60ad5af6ee02ee3b69a69d9f2f096
         $('#mobileOverlay').on('click', () => this.closeSidebar());
         $(document).on('keydown', (e) => {
             if (e.key === 'Escape') this.closeSidebar();
@@ -196,6 +200,7 @@ class DashboardManager {
     loadProductsList() {
         // Lista de todos os produtos do cardápio
         return [
+<<<<<<< HEAD
             // Doces no Pote (nomes iguais ao cardápio)
             { name: 'Bom Bom de Morango', category: 'Doces no Pote', price: 12.00 },
             { name: 'Bom Bom de Uva', category: 'Doces no Pote', price: 12.00 },
@@ -216,12 +221,37 @@ class DashboardManager {
             { name: 'Trufa de Nutella', category: 'Trufas Brancas', price: 6.50 },
             { name: 'Trufa de Ninho', category: 'Trufas Brancas', price: 6.00 },
             { name: 'Trufa de Oreo', category: 'Trufas Brancas', price: 6.00 },
+=======
+            { name: 'Bom Bom de Morango', category: 'Doces', price: 12.00 },
+            { name: 'Bom Bom de Uva', category: 'Doces', price: 12.00 },
+            { name: 'Tortinha de Limão', category: 'Doces', price: 12.00 },
+            { name: 'Trufa de Nutella', category: 'Trufas', price: 6.50 },
+            { name: 'Trufa de Brigadeiro', category: 'Trufas', price: 6.00 },
+            { name: 'Trufa de Ninho', category: 'Trufas', price: 6.00 },
+            { name: 'Trufa de Ninho com Nutella', category: 'Trufas', price: 6.00 },
+            { name: 'Trufa de Oreo', category: 'Trufas', price: 6.00 },
+            { name: 'Trufa de Pistache', category: 'Trufas', price: 6.50 },
+            { name: 'Trufa de Pistache com Ninho', category: 'Trufas', price: 6.50 },
+            { name: 'Trufa de Limão', category: 'Trufas', price: 6.00 },
+            { name: 'Trufa de Nutella ao Leite', category: 'Trufas ao Leite', price: 6.50 },
+            { name: 'Trufa de Ninho com Nutella ao Leite', category: 'Trufas ao Leite', price: 6.50 },
+            { name: 'Trufa de Brigadeiro ao Leite', category: 'Trufas ao Leite', price: 6.00 },
+            { name: 'Trufa de Ninho ao Leite', category: 'Trufas ao Leite', price: 6.00 },
+            { name: 'Trufa de Oreo ao Leite', category: 'Trufas ao Leite', price: 6.00 },
+>>>>>>> 6edad049bbe60ad5af6ee02ee3b69a69d9f2f096
             { name: 'Trufa de Ninho (Casquinha de Pistache)', category: 'Casquinha de Pistache', price: 7.00 },
             { name: 'Trufa de Pistache (Casquinha de Pistache)', category: 'Casquinha de Pistache', price: 7.00 },
             { name: 'Refrigerante cola 350ml', category: 'Bebidas', price: 6.00 },
             { name: 'Refrigerante cola zero 350ml', category: 'Bebidas', price: 6.00 },
+<<<<<<< HEAD
             { name: 'Água Mineral com gás 500ml', category: 'Bebidas', price: 4.00 },
             { name: 'Água Mineral sem gás 500ml', category: 'Bebidas', price: 4.00 }
+=======
+            { name: 'Água Mineral 500ml', category: 'Bebidas', price: 4.00 },
+            { name: 'Água mineral com gás.', category: 'Bebidas', price: 4.00 },
+            { name: 'Suco Maracuja 200ml', category: 'Bebidas', price: 10.00 },
+            { name: 'Suco Laranja 200ml', category: 'Bebidas', price: 10.00 }
+>>>>>>> 6edad049bbe60ad5af6ee02ee3b69a69d9f2f096
         ];
     }
 
