@@ -1,3 +1,6 @@
+.pistache-hero {
+    margin-bottom: 72px; /* empurra mais o conteúdo abaixo só nesta página */
+}
 /* Estilos Gerais */
 body {
     padding-top: 100px; /* Aumentado para 100px para acomodar navbar + status bar */
@@ -7,20 +10,93 @@ body {
     line-height: 1.6;
 }
 
-/* Status de Abertura Flutuante */
-.status-bar {
-    position: fixed;
-    top: 100px; /* Posiciona logo abaixo da navbar */
+/* Carrossel Hero */
+.hero-carousel {
+    margin-top: 0;
+    margin-bottom: 12px; /* aumenta espaço abaixo do banner */
+    position: relative;
+    z-index: 2; /* garante que o banner fique acima de elementos subsequentes */
+}
+
+.hero-carousel .carousel-item {
+    height: auto;
+    min-height: 0;
+    background: transparent;
+    position: relative;
+    z-index: 2;
+}
+
+/* Hero específico da página de Pistache */
+.pistache-page .hero-carousel {
+    margin-bottom: 310px;
+}
+
+/* Desktop (somente página Pistache) */
+@media (min-width: 992px) {
+    .pistache-page .hero-carousel {
+        margin-bottom: 810px; /* ajuste específico para desktop */
+    }
+}
+
+.hero-carousel .carousel-item picture,
+.hero-carousel .carousel-item img {
+    display: block;
+    margin: 0 auto;
+}
+
+.hero-carousel .carousel-item img {
+    width: auto;
+    height: auto;
+    max-width: 100%;
+    object-fit: contain;
+    object-position: center;
+}
+
+.hero-carousel .carousel-indicators li {
+    background-color: rgba(255,255,255,0.6);
+}
+
+.hero-carousel .carousel-indicators .active {
+    background-color: #fff;
+}
+
+.hero-carousel .carousel-control-prev-icon,
+.hero-carousel .carousel-control-next-icon {
+    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.5));
+}
+
+/* Botão sobre o banner */
+.banner-cta {
+    position: absolute;
+    bottom: 12px;
     left: 50%;
     transform: translateX(-50%);
+    background: #e63946;
+    color: #fff !important;
+    border-radius: 999px;
+    padding: 10px 18px;
+    font-weight: 700;
+    box-shadow: 0 6px 16px rgba(230,57,70,0.35);
+}
+
+.banner-cta:hover {
+    background: #c1121f;
+    color: #fff !important;
+}
+
+/* Status de Abertura Flutuante */
+.status-bar {
+    position: static;
+    margin: 12px auto 16px auto;
     padding: 12px 24px;
     text-align: center;
     font-weight: 600;
-    z-index: 1030;
+    z-index: 1;
     border-radius: 25px;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-    animation: slideInDown 0.5s ease-out;
+    animation: fadeDown 0.4s ease-out;
     max-width: 90%;
+    white-space: nowrap;
 }
 
 .status-open {
@@ -33,18 +109,16 @@ body {
     color: white;
 }
 
-/* Animação de entrada */
+/* Animações */
 @keyframes slideInDown {
-    from {
-        transform: translate(-50%, -20px);
-        opacity: 0;
-    }
-    to {
-        transform: translate(-50%, 0);
-        opacity: 1;
-    }
+    from { transform: translate(-50%, -20px); opacity: 0; }
+    to { transform: translate(-50%, 0); opacity: 1; }
 }
 
+@keyframes fadeDown {
+    from { transform: translateY(-10px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
 
 /* Ícone hamburger animado */
 .navbar-toggler {
@@ -102,19 +176,12 @@ body {
     transform: rotate(-135deg);
 }
 
-/* Ajustar o padding do body */
-body {
-    padding-top: 10px; /* Apenas a altura da navbar */
-    font-family: 'Poppins', sans-serif;
-    background-color: #fff9f5;
-    color: #333;
-    line-height: 1.6;
-}
+/* Ajustar o padding do body - removido duplicação */
 
 /* Navbar Moderna */
 .navbar {
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    background-color: #51e5ff !important;
+    background: linear-gradient(135deg, #51e5ff, #2e8291) !important;
     padding: 0.8rem 1rem;
     transition: all 0.3s ease;
 }
@@ -125,6 +192,7 @@ body {
 
 /* cor do nome da empresa */
 .navbar-brand {
+    font-family: 'Eczar', serif;
     font-weight: 700;
     font-size: 1.8rem;
     color: rgb(0, 0, 0) !important;
@@ -192,13 +260,18 @@ body {
 
 /* Seção de Conteúdo */
 section {
-    padding: 4rem 0;
+    padding: 2rem 0;
+}
+
+/* Seção Pistache - altura aumentada */
+.pistache-section {
+    padding: 2rem 0; /* igual às demais seções */
 }
 
 h2 {
     font-weight: 700;
-    color: #e63946;
-    margin-bottom: 10px;
+    color: #000000;
+    margin-bottom: 6px;
     position: relative;
     display: inline-block;
     margin-top: 2px;
@@ -211,8 +284,14 @@ h2::after {
     left: 0;
     width: 60px;
     height: 4px;
-    background-color: #e63946;
+    background-color: #000000;
     border-radius: 2px;
+}
+
+h4{
+    color: #ffffff;
+    font-weight: 700;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
 }
 
 /* Cards de Produtos */
@@ -221,14 +300,14 @@ h2::after {
     transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     border-radius: 12px;
     overflow: hidden;
-    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.08);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
     margin-bottom: 1.5rem;
     background-color: white;
 }
 
 .card:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 12px 25px rgba(0, 0, 0, 0.12);
+    transform: translateY(-8px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
 }
 
 .card-img-top {
@@ -243,6 +322,36 @@ h2::after {
     color: white;
     padding: 1rem 1.5rem;
     border-bottom: none;
+}
+
+/* Cor personalizada para o bloco de Bebidas */
+.card-header.bg-bebidas {
+    background-color: #51e5ff !important;
+    background: linear-gradient(135deg, #51e5ff, #2e8291) !important;
+}
+
+/* Cor personalizada para o bloco de Doces */
+.card-header.bg-doces {
+    background-color: #51e5ff !important;
+    background: linear-gradient(135deg, #51e5ff, #2e8291) !important;
+}
+
+/* Cor personalizada para o bloco de Trufas */
+.card-header.bg-trufas {
+    background-color: #51e5ff !important;
+    background: linear-gradient(135deg, #51e5ff, #2e8291) !important;
+}
+
+/* Cor personalizada para o bloco de Trufas ao Leite */
+.card-header.bg-trufas-leite {
+    background-color: #51e5ff !important;
+    background: linear-gradient(135deg, #51e5ff, #2e8291) !important;
+}
+
+/* Cor personalizada para o bloco de Trufas Brancas */
+.card-header.bg-trufas-brancas {
+    background-color: #51e5ff !important;
+    background: linear-gradient(135deg, #51e5ff, #2e8291) !important;
 }
 
 .card-body {
@@ -314,18 +423,66 @@ h2::after {
     padding: 0.8rem 1.2rem;
     border: 2px solid #eee;
     transition: all 0.3s;
+    background-color: white;
+    color: #333;
 }
 
 .form-control:focus {
     border-color: #e63946;
     box-shadow: 0 0 0 0.2rem rgba(230, 57, 70, 0.15);
+    background-color: white;
+}
+
+/* Fix para select dropdown */
+select.form-control {
+    background-color: white !important;
+    color: #333 !important;
+    appearance: auto;
+    font-size: 16px !important;
+    line-height: 1.5 !important;
+    height: auto !important;
+    min-height: 48px !important;
+}
+
+select.form-control option {
+    background-color: white !important;
+    color: #333 !important;
+    padding: 8px 12px !important;
+    font-size: 16px !important;
+    display: block !important;
+}
+
+/* Override Bootstrap select styles */
+.form-control select,
+select.form-control,
+#orderForm select {
+    background-color: #fff !important;
+    color: #495057 !important;
+    border: 1px solid #ced4da !important;
+    font-size: 1rem !important;
+    font-weight: 400 !important;
+    line-height: 1.5 !important;
+    padding: 0.375rem 0.75rem !important;
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='m6 8 4 4 4-4'/%3e%3c/svg%3e") !important;
+    background-position: right 0.75rem center !important;
+    background-repeat: no-repeat !important;
+    background-size: 16px 12px !important;
+    -webkit-appearance: none !important;
+    -moz-appearance: none !important;
+    appearance: none !important;
 }
 
 /* Rodapé */
 footer {
-    background-color: #51e5ff;
+    background: linear-gradient(135deg, #51e5ff, #2e8291);
     color: rgb(0, 0, 0);
     padding: 0.5rem 0 1.5rem;
+    z-index: 0;
+}
+
+footer h4 {
+    color: #000000 !important;
+    font-weight: 700;
 }
 
 .social-icons {
@@ -348,56 +505,87 @@ footer {
 /* Carrinho Flutuante */
 .cart-floating-btn {
     position: fixed;
-    bottom: 30px;
-    right: 30px;
-    background: #51e5ff;
-    color: rgb(0, 0, 0);
-    width: 70px;
-    height: 70px;
+    bottom: 20px;
+    right: 20px;
+    background-color: #2e8291;
+    color: white;
     border-radius: 50%;
-    display: flex;
+    width: 60px;
+    height: 60px;
+    display: flex; /* Sempre visível */
     align-items: center;
     justify-content: center;
-    font-size: 1.8rem;
-    box-shadow: 0 6px 20px rgba(230, 57, 70, 0.4);
     cursor: pointer;
-    z-index: 1000;
-    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    animation: pulse 2s infinite;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+    z-index: 1030; /* acima do conteúdo e banner */
+    transition: all 0.3s ease;
+    animation: cart-pulse 2s ease-in-out infinite;
 }
 
 .cart-floating-btn:hover {
-    transform: scale(1.1) rotate(5deg);
-    box-shadow: 0 8px 25px rgba(230, 57, 70, 0.5);
+    background-color: #1a5f6b;
+    transform: scale(1.1);
+}
+
+.cart-floating-btn i {
+    font-size: 1.5rem;
 }
 
 .cart-count {
     position: absolute;
     top: -5px;
     right: -5px;
-    background: #343a40;
+    background-color: #dc3545;
     color: white;
-    width: 28px;
-    height: 28px;
     border-radius: 50%;
-    font-size: 0.9rem;
-    display: flex;
+    width: 25px;
+    height: 25px;
+    display: flex; /* Sempre visível */
     align-items: center;
     justify-content: center;
+    font-size: 0.8rem;
     font-weight: bold;
-    border: 2px solid white;
 }
 
-@keyframes pulse {
+/* Animação de pulso do botão do carrinho */
+@keyframes cart-pulse {
     0% {
-        box-shadow: 0 0 0 0 rgba(230, 57, 70, 0.7);
+        transform: scale(1);
+        box-shadow: 0 4px 12px rgba(0,0,0,0.30), 0 0 0 0 rgba(46,130,145,0.45);
     }
-    70% {
-        box-shadow: 0 0 0 12px rgba(230, 57, 70, 0);
+    50% {
+        transform: scale(1.06);
+        box-shadow: 0 6px 16px rgba(0,0,0,0.35), 0 0 0 12px rgba(46,130,145,0);
     }
     100% {
-        box-shadow: 0 0 0 0 rgba(230, 57, 70, 0);
+        transform: scale(1);
+        box-shadow: 0 4px 12px rgba(0,0,0,0.30), 0 0 0 0 rgba(46,130,145,0);
     }
+}
+
+/* Botão Dashboard Inline */
+.dashboard-btn-inline {
+    margin-left: 8px;
+    color: #6c757d;
+    text-decoration: none;
+    font-size: 0.9rem;
+    opacity: 0.4;
+    transition: all 0.3s ease;
+    display: inline-block;
+    padding: 2px 4px;
+    border-radius: 3px;
+}
+
+.dashboard-btn-inline:hover {
+    color: #2e8291;
+    text-decoration: none;
+    opacity: 1;
+    transform: scale(1.1);
+}
+
+.dashboard-btn-inline:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(46, 130, 145, 0.3);
 }
 
 /* Modal do Carrinho com Rolagem */
@@ -454,6 +642,23 @@ footer {
 /* Ajustar o header do modal */
 .modal-header {
     flex-shrink: 0;
+    background: linear-gradient(135deg, #51e5ff, #2e8291);
+    color: white;
+    border-bottom: none;
+}
+
+.modal-header .modal-title {
+    color: white;
+    font-weight: 700;
+}
+
+.modal-header .close {
+    color: white;
+    opacity: 0.8;
+}
+
+.modal-header .close:hover {
+    opacity: 1;
 }
 
 /* Ajustar o formulário para não crescer demais */
@@ -510,6 +715,33 @@ footer {
     padding: 1.2rem 1.5rem;
     border: none;
     border-bottom: 1px solid #f0f0f0 !important;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    margin-bottom: 8px;
+    border-radius: 8px;
+}
+
+/* Estado visual para produto indisponível */
+.product-unavailable {
+    opacity: 0.55;
+    filter: grayscale(100%);
+}
+
+.product-unavailable .btn,
+.add-to-cart:disabled,
+.add-to-cart.disabled {
+    cursor: not-allowed !important;
+    opacity: 0.7 !important;
+}
+
+.add-to-cart:disabled {
+    background-color: #adb5bd !important;
+    border-color: #adb5bd !important;
+    color: #ffffff !important;
+}
+
+.unavailable-badge {
+    margin-left: 12px;
+    vertical-align: middle;
 }
 
 .list-group-item:last-child {
@@ -519,6 +751,7 @@ footer {
 .list-group-item:hover {
     background-color: #fff5f5;
     transform: translateX(5px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
 }
 
 .list-group-item h5 {
@@ -540,14 +773,7 @@ footer {
     min-width: 120px;
 }
 
-/* Modal Mobile para Produtos */
-.product-modal-img {
-    width: 100%;
-    height: 200px;
-    object-fit: cover;
-    border-radius: 10px;
-    margin-bottom: 15px;
-}
+
 
 /* Responsividade */
 @media (max-width: 992px) {
@@ -584,7 +810,6 @@ footer {
         height: 80px;
         object-fit: cover;
         border-radius: 8px;
-        margin-right: 15px;
     }
     
     .list-group-item {
@@ -606,7 +831,6 @@ footer {
         height: 100px;
         object-fit: cover;
         border-radius: 8px;
-        margin-right: 15px;
     }
     
     .mobile-modal {
@@ -617,11 +841,14 @@ footer {
 @media (max-width: 576px) {
   #statusBar,
   .status-bar {
-    font-size: 0.85rem;
-    padding: 16px 20px;
+    font-size: 0.8rem;
+    padding: 10px 16px;
     border-radius: 50px;
-    max-width: 90vw;
-    margin-right: 15px;
+    max-width: 95vw;
+    margin-top: 10px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 }
 
@@ -657,11 +884,20 @@ footer {
 /* Estilo para produtos com imagem */
 .product-with-image {
     display: flex;
-    align-items: center;
+    align-items: flex-start;
+    justify-content: flex-start;
+    width: 100%;
 }
 
 .product-info {
     flex: 1;
+    margin-left: 0;
+}
+
+.product-image {
+    flex-shrink: 0;
+    margin-left: 0;
+    margin-right: 15px;
 }
 
 .invalid-feedback {
@@ -678,4 +914,66 @@ footer {
 
 #cepError {
     font-weight: 500;
+}
+
+/* Carrinho Mobile - Layout Melhorado */
+.cart-item {
+    background: #fff;
+    border: 1px solid #e9ecef !important;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    transition: all 0.3s ease;
+}
+
+.cart-item:hover {
+    box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+}
+
+.quantity-controls {
+    background: #f8f9fa;
+    border-radius: 20px;
+    padding: 4px;
+}
+
+.quantity-controls .btn {
+    border-radius: 50%;
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+}
+
+.quantity-controls span {
+    min-width: 30px;
+    text-align: center;
+    font-size: 1.1rem;
+}
+
+/* Mobile - Ajustes específicos do carrinho */
+@media (max-width: 768px) {
+    .cart-item {
+        margin-bottom: 1rem !important;
+        padding: 1rem !important;
+    }
+    
+    .cart-item h6 {
+        font-size: 1.1rem;
+        line-height: 1.3;
+    }
+    
+    .quantity-controls {
+        margin-right: 1rem;
+    }
+    
+    .quantity-controls .btn {
+        width: 28px;
+        height: 28px;
+        font-size: 0.9rem;
+    }
+    
+    .quantity-controls span {
+        font-size: 1rem;
+        min-width: 25px;
+    }
 }
