@@ -119,16 +119,8 @@ body {
     margin-left: var(--sidebar-width);
     min-height: 100vh;
     transition: var(--transition);
-<<<<<<< HEAD
     position: relative;
     z-index: 1;
-=======
-<<<<<<< HEAD
-    position: relative;
-    z-index: 1;
-=======
->>>>>>> 6edad049bbe60ad5af6ee02ee3b69a69d9f2f096
->>>>>>> 3edbbce453ac1f435f1751291f1f4ea9d7e0ef96
 }
 
 .dashboard-header {
@@ -411,7 +403,6 @@ body {
     font-size: 0.9rem;
 }
 
-<<<<<<< HEAD
 /* Melhorias para selects compactos no header — removido ícone em inputs/textarea */
 select.form-control {
     appearance: auto;
@@ -428,19 +419,6 @@ select.form-control {
 
 select.form-control option {
     color: #495057;
-=======
-/* Melhorias para selects compactos no header */
-.form-control, select.form-control {
-    appearance: none;
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    background-color: #fff;
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 20 20' fill='none'%3E%3Cpath d='M6 8l4 4 4-4' stroke='%236b7280' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
-    background-repeat: no-repeat;
-    background-position: right 0.6rem center;
-    background-size: 16px 16px;
-    padding-right: 2rem;
->>>>>>> 3edbbce453ac1f435f1751291f1f4ea9d7e0ef96
 }
 
 .date-filter select.form-control {
@@ -450,7 +428,6 @@ select.form-control option {
     padding-bottom: 0;
 }
 
-<<<<<<< HEAD
 /* Estilo específico para o seletor de tipo de relatório — sem ícone custom */
 #reportType.form-control {
     appearance: auto !important;
@@ -459,19 +436,6 @@ select.form-control option {
     background-color: #fff !important;
     background-image: none !important;
     padding-right: 0.75rem !important;
-=======
-/* Estilo específico para o seletor de tipo de relatório */
-#reportType.form-control {
-    appearance: none !important;
-    -webkit-appearance: none !important;
-    -moz-appearance: none !important;
-    background-color: #fff !important;
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 20 20' fill='none'%3E%3Cpath d='M6 8l4 4 4-4' stroke='%236b7280' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") !important;
-    background-repeat: no-repeat !important;
-    background-position: right 0.6rem center !important;
-    background-size: 16px 16px !important;
-    padding-right: 2rem !important;
->>>>>>> 3edbbce453ac1f435f1751291f1f4ea9d7e0ef96
     border: 1px solid #dee2e6 !important;
     border-radius: 6px !important;
     padding: 10px 15px !important;
@@ -575,33 +539,6 @@ select.form-control option {
     min-width: 150px;
 }
 
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
-=======
-/* Mobile Menu Toggle */
-.mobile-menu-toggle {
-    display: none;
-    position: fixed;
-    top: 20px;
-    left: 20px;
-    z-index: 1001;
-    background: var(--primary-color);
-    color: white;
-    border: none;
-    border-radius: 8px;
-    padding: 12px;
-    font-size: 1.2rem;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-    transition: var(--transition);
-}
-
-.mobile-menu-toggle:hover {
-    background: var(--secondary-color);
-    transform: scale(1.05);
-}
->>>>>>> 6edad049bbe60ad5af6ee02ee3b69a69d9f2f096
->>>>>>> 3edbbce453ac1f435f1751291f1f4ea9d7e0ef96
 
 .mobile-overlay {
     display: none;
@@ -614,14 +551,7 @@ select.form-control option {
     z-index: 999;
     opacity: 0;
     transition: opacity 0.3s ease;
-<<<<<<< HEAD
     cursor: pointer;
-=======
-<<<<<<< HEAD
-    cursor: pointer;
-=======
->>>>>>> 6edad049bbe60ad5af6ee02ee3b69a69d9f2f096
->>>>>>> 3edbbce453ac1f435f1751291f1f4ea9d7e0ef96
 }
 
 .mobile-overlay.show {
@@ -664,10 +594,6 @@ body.sidebar-open {
     }
 }
 
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
->>>>>>> 3edbbce453ac1f435f1751291f1f4ea9d7e0ef96
 /* Mobile Menu Button */
 #menuToggle {
     border-radius: 8px;
@@ -706,55 +632,25 @@ body.sidebar-open {
     
     .mobile-overlay {
         display: none;
-<<<<<<< HEAD
-=======
-=======
-/* Responsive Design - Mobile */
-@media (max-width: 768px) {
-    .mobile-menu-toggle {
-        display: block;
-    }
-    
-    .mobile-overlay {
-        display: block;
->>>>>>> 6edad049bbe60ad5af6ee02ee3b69a69d9f2f096
->>>>>>> 3edbbce453ac1f435f1751291f1f4ea9d7e0ef96
     }
     
     .sidebar {
         transform: translateX(-100%);
         width: 280px;
         box-shadow: 2px 0 20px rgba(0,0,0,0.3);
-<<<<<<< HEAD
         transition: transform 0.3s ease;
         z-index: 1000;
-=======
-<<<<<<< HEAD
-        transition: transform 0.3s ease;
-        z-index: 1000;
-=======
->>>>>>> 6edad049bbe60ad5af6ee02ee3b69a69d9f2f096
->>>>>>> 3edbbce453ac1f435f1751291f1f4ea9d7e0ef96
     }
     
     .sidebar.show {
         transform: translateX(0);
     }
     
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
->>>>>>> 3edbbce453ac1f435f1751291f1f4ea9d7e0ef96
     .mobile-overlay.show {
         display: block;
         opacity: 1;
     }
     
-<<<<<<< HEAD
-=======
-=======
->>>>>>> 6edad049bbe60ad5af6ee02ee3b69a69d9f2f096
->>>>>>> 3edbbce453ac1f435f1751291f1f4ea9d7e0ef96
     .main-content {
         margin-left: 0;
         padding-top: 70px;
@@ -895,18 +791,6 @@ body.sidebar-open {
 
 /* Responsive Design - Small Mobile */
 @media (max-width: 576px) {
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
-=======
-    .mobile-menu-toggle {
-        top: 15px;
-        left: 15px;
-        padding: 10px;
-        font-size: 1.1rem;
-    }
->>>>>>> 6edad049bbe60ad5af6ee02ee3b69a69d9f2f096
->>>>>>> 3edbbce453ac1f435f1751291f1f4ea9d7e0ef96
     
     .sidebar {
         width: 100%;
@@ -1063,10 +947,6 @@ body.sidebar-open {
 }
 
 /* Modal Customizations */
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
->>>>>>> 3edbbce453ac1f435f1751291f1f4ea9d7e0ef96
 .modal {
     z-index: 1050;
 }
@@ -1075,11 +955,6 @@ body.sidebar-open {
     z-index: 1040;
 }
 
-<<<<<<< HEAD
-=======
-=======
->>>>>>> 6edad049bbe60ad5af6ee02ee3b69a69d9f2f096
->>>>>>> 3edbbce453ac1f435f1751291f1f4ea9d7e0ef96
 .modal-content {
     border-radius: var(--border-radius);
     border: none;
@@ -1205,7 +1080,6 @@ body.sidebar-open {
     font-size: 0.8rem;
     color: #666;
 }
-<<<<<<< HEAD
 
 /* Form styling for add products */
 #addProductForm {
@@ -1308,5 +1182,3 @@ body.sidebar-open {
         margin: 0;
     }
 }
-=======
->>>>>>> 3edbbce453ac1f435f1751291f1f4ea9d7e0ef96

@@ -113,24 +113,13 @@ body {
 @keyframes slideInDown {
     from { transform: translate(-50%, -20px); opacity: 0; }
     to { transform: translate(-50%, 0); opacity: 1; }
-<<<<<<< HEAD
 }
 
 @keyframes fadeDown {
     from { transform: translateY(-10px); opacity: 0; }
     to { transform: translateY(0); opacity: 1; }
-=======
->>>>>>> 3edbbce453ac1f435f1751291f1f4ea9d7e0ef96
 }
 
-<<<<<<< HEAD
-@keyframes fadeDown {
-    from { transform: translateY(-10px); opacity: 0; }
-    to { transform: translateY(0); opacity: 1; }
-}
-
-=======
->>>>>>> 6edad049bbe60ad5af6ee02ee3b69a69d9f2f096
 /* Ícone hamburger animado */
 .navbar-toggler {
     border: none;
@@ -282,15 +271,7 @@ section {
 h2 {
     font-weight: 700;
     color: #000000;
-<<<<<<< HEAD
     margin-bottom: 6px;
-=======
-<<<<<<< HEAD
-    margin-bottom: 6px;
-=======
-    margin-bottom: 10px;
->>>>>>> 6edad049bbe60ad5af6ee02ee3b69a69d9f2f096
->>>>>>> 3edbbce453ac1f435f1751291f1f4ea9d7e0ef96
     position: relative;
     display: inline-block;
     margin-top: 2px;
@@ -504,14 +485,6 @@ footer h4 {
     font-weight: 700;
 }
 
-<<<<<<< HEAD
-=======
-footer h4 {
-    color: #000000 !important;
-    font-weight: 700;
-}
-
->>>>>>> 3edbbce453ac1f435f1751291f1f4ea9d7e0ef96
 .social-icons {
     margin: 1.5rem 0;
 }
@@ -544,15 +517,7 @@ footer h4 {
     justify-content: center;
     cursor: pointer;
     box-shadow: 0 4px 12px rgba(0,0,0,0.3);
-<<<<<<< HEAD
     z-index: 1030; /* acima do conteúdo e banner */
-=======
-<<<<<<< HEAD
-    z-index: 1030; /* acima do conteúdo e banner */
-=======
-    z-index: 1000;
->>>>>>> 6edad049bbe60ad5af6ee02ee3b69a69d9f2f096
->>>>>>> 3edbbce453ac1f435f1751291f1f4ea9d7e0ef96
     transition: all 0.3s ease;
     animation: cart-pulse 2s ease-in-out infinite;
 }
@@ -919,11 +884,7 @@ footer h4 {
 /* Estilo para produtos com imagem */
 .product-with-image {
     display: flex;
-<<<<<<< HEAD
     align-items: center;
-=======
-    align-items: flex-start;
->>>>>>> 3edbbce453ac1f435f1751291f1f4ea9d7e0ef96
     justify-content: flex-start;
     width: 100%;
 }
@@ -939,7 +900,6 @@ footer h4 {
     margin-right: 15px;
 }
 
-<<<<<<< HEAD
 /* Centralizar texto dentro dos botões Adicionar */
 .add-to-cart {
     display: flex;
@@ -948,8 +908,6 @@ footer h4 {
     text-align: center;
 }
 
-=======
->>>>>>> 3edbbce453ac1f435f1751291f1f4ea9d7e0ef96
 .invalid-feedback {
     display: block;
     width: 100%;
@@ -1026,10 +984,6 @@ footer h4 {
         font-size: 1rem;
         min-width: 25px;
     }
-<<<<<<< HEAD
 }
 
 /* Loading do CEP removido conforme solicitado */
-=======
-}
->>>>>>> 3edbbce453ac1f435f1751291f1f4ea9d7e0ef96
