@@ -106,6 +106,7 @@ function validarCEPJau(cep) {
     return cepNumero >= 17200001 && cepNumero <= 17229999;
 }
 
+<<<<<<< HEAD
 // Função para consultar CEP na API do ViaCEP
 async function consultarCEP(cep) {
     try {
@@ -163,6 +164,8 @@ function preencherEndereco(dadosCEP) {
     }
 }
 
+=======
+>>>>>>> 3edbbce453ac1f435f1751291f1f4ea9d7e0ef96
 // Função para validar nome (apenas letras)
 function validarNome(nome) {
     const regex = /^[A-Za-zÀ-ÿ\s]+$/;
@@ -275,6 +278,10 @@ function updateCartDisplay() {
         subtotal += itemTotal;
         
         cartItems.innerHTML += `
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> 3edbbce453ac1f435f1751291f1f4ea9d7e0ef96
             <div class="cart-item mb-3 p-3 border rounded">
                 <div class="row align-items-center">
                     <div class="col-12 mb-2">
@@ -298,6 +305,26 @@ function updateCartDisplay() {
                             </button>
                         </div>
                     </div>
+<<<<<<< HEAD
+=======
+=======
+            <div class="cart-item d-flex justify-content-between align-items-center mb-2 p-2 border rounded">
+                <div class="item-info">
+                    <h6 class="mb-1">${item.name}</h6>
+                    <small class="text-muted">R$ ${item.price.toFixed(2)} cada</small>
+                </div>
+                <div class="item-controls d-flex align-items-center">
+                    <button class="btn btn-sm btn-outline-secondary" onclick="updateQuantity(${index}, ${item.quantity - 1})">-</button>
+                    <span class="mx-2">${item.quantity}</span>
+                    <button class="btn btn-sm btn-outline-secondary" onclick="updateQuantity(${index}, ${item.quantity + 1})">+</button>
+                    <button class="btn btn-sm btn-danger ml-2" onclick="removeFromCart(${index})">
+                        <i class="fas fa-trash"></i>
+                    </button>
+                </div>
+                <div class="item-total">
+                    <strong>R$ ${itemTotal.toFixed(2)}</strong>
+>>>>>>> 6edad049bbe60ad5af6ee02ee3b69a69d9f2f096
+>>>>>>> 3edbbce453ac1f435f1751291f1f4ea9d7e0ef96
                 </div>
             </div>
         `;
@@ -490,6 +517,10 @@ document.addEventListener('DOMContentLoaded', function() {
         trocoInput.addEventListener('focus', function() {
             if (this.value.startsWith('R$')) {
                 this.value = this.value.replace('R$ ', '').replace(',', '.');
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> 3edbbce453ac1f435f1751291f1f4ea9d7e0ef96
             }
         });
         
@@ -552,7 +583,25 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
     
+<<<<<<< HEAD
     // Campos de bairro e número serão mostrados automaticamente após consulta do CEP
+=======
+    // Mostrar campos adicionais quando começar a digitar endereço
+    const enderecoInput = document.getElementById('enderecoInput');
+    if (enderecoInput) {
+        enderecoInput.addEventListener('input', function() {
+            const hasText = this.value.trim().length > 0;
+            const bairroField = document.getElementById('bairroField');
+            const numeroField = document.getElementById('numeroField');
+            if (bairroField) bairroField.style.display = hasText ? 'block' : 'none';
+            if (numeroField) numeroField.style.display = hasText ? 'block' : 'none';
+            const bairroInput = document.getElementById('bairroInput');
+            const numeroInput = document.getElementById('numeroInput');
+            if (bairroInput) bairroInput.required = hasText;
+            if (numeroInput) numeroInput.required = hasText;
+        });
+    }
+>>>>>>> 3edbbce453ac1f435f1751291f1f4ea9d7e0ef96
 
     // Mostrar/ocultar campo de troco baseado na forma de pagamento
     const paymentSelect = document.getElementById('paymentSelect');
@@ -569,6 +618,73 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
+<<<<<<< HEAD
+=======
+=======
+            }
+        });
+        
+        trocoInput.addEventListener('blur', function() {
+            validarValorTroco();
+        });
+    }
+    
+    // Função para validar valor do troco
+    function validarValorTroco() {
+        const trocoInput = document.getElementById('changeField');
+        if (!trocoInput || !trocoInput.style.display || trocoInput.style.display === 'none') {
+            return true;
+        }
+        
+        const trocoValue = document.querySelector('input[placeholder="Valor para troco"]');
+        if (!trocoValue || !trocoValue.value) {
+            return true;
+        }
+        
+        // Remove R$ e converte para número
+        const valorTroco = parseFloat(trocoValue.value.replace('R$ ', '').replace(',', '.'));
+        const subtotal = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+        const total = subtotal + taxaEntrega;
+        
+        if (isNaN(valorTroco)) {
+            mostrarErroTroco('Por favor, digite um valor válido');
+            return false;
+        }
+        
+        if (valorTroco < total) {
+            mostrarErroTroco(`O valor para troco (R$ ${valorTroco.toFixed(2).replace('.', ',')}) deve ser maior que o total do pedido (R$ ${total.toFixed(2).replace('.', ',')})`);
+            return false;
+        }
+        
+        // Remove erro se válido
+        trocoValue.classList.remove('is-invalid');
+        const errorDiv = document.getElementById('trocoError');
+        if (errorDiv) errorDiv.remove();
+        
+        return true;
+    }
+    
+    // Função para mostrar erro no campo troco
+    function mostrarErroTroco(mensagem) {
+        const trocoValue = document.querySelector('input[placeholder="Valor para troco"]');
+        if (trocoValue) {
+            trocoValue.classList.add('is-invalid');
+            
+            // Remove erro anterior
+            const errorDiv = document.getElementById('trocoError');
+            if (errorDiv) errorDiv.remove();
+            
+            // Adiciona novo erro
+            const errorElement = document.createElement('div');
+            errorElement.id = 'trocoError';
+            errorElement.className = 'invalid-feedback';
+            errorElement.textContent = mensagem;
+            trocoValue.parentNode.appendChild(errorElement);
+        }
+    }
+    
+>>>>>>> 6edad049bbe60ad5af6ee02ee3b69a69d9f2f096
+>>>>>>> 3edbbce453ac1f435f1751291f1f4ea9d7e0ef96
     // Adicionar evento para o campo CEP
     const cepInput = document.getElementById('cep');
     if (cepInput) {
@@ -581,6 +697,7 @@ document.addEventListener('DOMContentLoaded', function() {
             const errorDiv = document.getElementById('cepError');
             if (errorDiv) errorDiv.remove();
             
+<<<<<<< HEAD
             // Esconder campos de endereço, bairro e número quando CEP estiver sendo digitado
             const enderecoField = document.getElementById('enderecoField');
             const bairroField = document.getElementById('bairroField');
@@ -635,6 +752,39 @@ document.addEventListener('DOMContentLoaded', function() {
                 console.error('Erro ao consultar CEP:', error);
                 mostrarErroCEP('Erro ao consultar CEP. Verifique se o CEP está correto.');
                 // Nenhuma animação para remover
+=======
+            // Validar e calcular taxa quando o CEP estiver completo
+            if (validarCEP(this.value)) {
+                if (validarCEPJau(this.value)) {
+                    // Calcular taxa e bairro usando a função do entregas.js
+                    const resultado = calcularTaxaEntrega(this.value);
+                    taxaEntrega = resultado.taxa;
+                    bairroEntrega = resultado.mensagem || "Jaú/SP";
+                    
+                    // Mostrar a taxa de entrega
+                    document.getElementById('taxaEntregaValor').textContent = formatMoney(taxaEntrega);
+                    document.getElementById('taxaEntregaBairro').textContent = `- ${bairroEntrega}`;
+                    document.getElementById('taxaEntregaField').style.display = 'block';
+                    
+                    // Atualizar o total
+                    atualizarTotalComTaxa();
+                } else {
+                    mostrarErroCEP('Atendemos apenas na cidade de Jaú/SP');
+                }
+            } else {
+                // Esconder a taxa se o CEP não for válido
+                document.getElementById('taxaEntregaField').style.display = 'none';
+                taxaEntrega = 0;
+                atualizarTotalComTaxa();
+            }
+        });
+        
+        cepInput.addEventListener('blur', function() {
+            if (!validarCEP(this.value)) {
+                mostrarErroCEP('CEP inválido');
+            } else if (!validarCEPJau(this.value)) {
+                mostrarErroCEP('Atendemos apenas na cidade de Jaú/SP');
+>>>>>>> 3edbbce453ac1f435f1751291f1f4ea9d7e0ef96
             }
         });
     }
@@ -666,7 +816,19 @@ document.addEventListener('DOMContentLoaded', function() {
                 nomeInput.classList.remove('is-invalid');
             }
             
+<<<<<<< HEAD
             // Campo de Ponto de Referência removido
+=======
+            // Validar Ponto de Referência
+            const referenciaInput = document.getElementById('referenciaInput');
+            if (!referenciaInput.value.trim()) {
+                referenciaInput.classList.add('is-invalid');
+                camposVazios.push('Ponto de Referência');
+                isValid = false;
+            } else {
+                referenciaInput.classList.remove('is-invalid');
+            }
+>>>>>>> 3edbbce453ac1f435f1751291f1f4ea9d7e0ef96
             
             // Validar Endereço
             const enderecoInput = document.getElementById('enderecoInput');
@@ -676,6 +838,10 @@ document.addEventListener('DOMContentLoaded', function() {
                 isValid = false;
             } else {
                 enderecoInput.classList.remove('is-invalid');
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> 3edbbce453ac1f435f1751291f1f4ea9d7e0ef96
                 
                 // Se endereço foi preenchido, validar campos obrigatórios adicionais
                 const bairroInput = document.getElementById('bairroInput');
@@ -700,6 +866,11 @@ document.addEventListener('DOMContentLoaded', function() {
                         numeroInput.classList.remove('is-invalid');
                     }
                 }
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 6edad049bbe60ad5af6ee02ee3b69a69d9f2f096
+>>>>>>> 3edbbce453ac1f435f1751291f1f4ea9d7e0ef96
             }
             
             // Validar CEP
@@ -768,6 +939,10 @@ function saveOrderToHistory(orderData) {
             total: orderData.total,
             payment: orderData.payment,
             address: orderData.address,
+<<<<<<< HEAD
+=======
+            reference: orderData.reference,
+>>>>>>> 3edbbce453ac1f435f1751291f1f4ea9d7e0ef96
             cep: orderData.cep,
             bairro: orderData.bairro,
             observations: orderData.observations,
@@ -798,9 +973,16 @@ function saveOrderToHistory(orderData) {
         } else {
             customers.push({
                 name: orderData.customer,
+<<<<<<< HEAD
             address: orderData.address,
             cep: orderData.cep,
             bairro: orderData.bairro,
+=======
+                address: orderData.address,
+                reference: orderData.reference,
+                cep: orderData.cep,
+                bairro: orderData.bairro,
+>>>>>>> 3edbbce453ac1f435f1751291f1f4ea9d7e0ef96
                 totalOrders: 1,
                 totalSpent: orderData.total,
                 firstOrder: new Date(),
@@ -816,9 +998,18 @@ function saveOrderToHistory(orderData) {
         const form = document.getElementById('orderForm');
         const customerName = document.getElementById('nomeInput').value;
         const customerAddress = document.getElementById('enderecoInput').value;
+<<<<<<< HEAD
         const customerBairro = document.getElementById('bairroInput') ? document.getElementById('bairroInput').value : '';
         const customerNumero = document.getElementById('numeroInput') ? document.getElementById('numeroInput').value : '';
         const customerReference = ''; // Campo removido
+=======
+<<<<<<< HEAD
+        const customerBairro = document.getElementById('bairroInput') ? document.getElementById('bairroInput').value : '';
+        const customerNumero = document.getElementById('numeroInput') ? document.getElementById('numeroInput').value : '';
+=======
+>>>>>>> 6edad049bbe60ad5af6ee02ee3b69a69d9f2f096
+        const customerReference = document.getElementById('referenciaInput').value;
+>>>>>>> 3edbbce453ac1f435f1751291f1f4ea9d7e0ef96
         const customerCep = document.getElementById('cep').value;
         const paymentMethod = document.getElementById('paymentSelect').value;
         const observations = document.getElementById('observacoesInput').value;
@@ -838,11 +1029,24 @@ function saveOrderToHistory(orderData) {
         message += `*Total: ${formatMoney(total)}*\n\n`;
         message += `*Dados do Cliente:*\n`;
         message += `Nome: ${customerName}\n`;
+<<<<<<< HEAD
         message += `Endereço: ${customerAddress}\n`;
+=======
+        message += `Ponto de Referência: ${customerReference}\n`;
+        message += `Endereço: ${customerAddress}\n`;
+<<<<<<< HEAD
+>>>>>>> 3edbbce453ac1f435f1751291f1f4ea9d7e0ef96
         if (customerBairro) message += `Bairro: ${customerBairro}\n`;
         if (customerNumero) message += `Número: ${customerNumero}\n`;
         message += `CEP: ${customerCep}\n`;
         message += `Bairro (Taxa): ${bairroEntrega}\n`;
+<<<<<<< HEAD
+=======
+=======
+        message += `CEP: ${customerCep}\n`;
+        message += `Bairro: ${bairroEntrega}\n`;
+>>>>>>> 6edad049bbe60ad5af6ee02ee3b69a69d9f2f096
+>>>>>>> 3edbbce453ac1f435f1751291f1f4ea9d7e0ef96
         message += `Pagamento: ${paymentMethod}\n`;
         
         // Adicionar observações se preenchidas
@@ -872,10 +1076,24 @@ function saveOrderToHistory(orderData) {
             total: total,
             payment: paymentMethod,
             address: customerAddress,
+<<<<<<< HEAD
             bairro: customerBairro,
             numero: customerNumero,
             cep: customerCep,
             bairroTaxa: bairroEntrega,
+=======
+<<<<<<< HEAD
+            bairro: customerBairro,
+            numero: customerNumero,
+            reference: customerReference,
+            cep: customerCep,
+            bairroTaxa: bairroEntrega,
+=======
+            reference: customerReference,
+            cep: customerCep,
+            bairro: bairroEntrega,
+>>>>>>> 6edad049bbe60ad5af6ee02ee3b69a69d9f2f096
+>>>>>>> 3edbbce453ac1f435f1751291f1f4ea9d7e0ef96
             observations: observations
         };
         
@@ -922,6 +1140,10 @@ function saveOrderToHistory(orderData) {
         let customerHtml = `
             <p><strong>Nome:</strong> ${document.getElementById('nomeInput').value}</p>
             <p><strong>Endereço:</strong> ${document.getElementById('enderecoInput').value}</p>
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> 3edbbce453ac1f435f1751291f1f4ea9d7e0ef96
         `;
         
         const bairroInput = document.getElementById('bairroInput');
@@ -934,8 +1156,19 @@ function saveOrderToHistory(orderData) {
         }
         
         customerHtml += `
+<<<<<<< HEAD
             <p><strong>CEP:</strong> ${document.getElementById('cep').value}</p>
             <p><strong>Bairro (Taxa):</strong> ${bairroEntrega}</p>
+=======
+            <p><strong>Referência:</strong> ${document.getElementById('referenciaInput').value}</p>
+            <p><strong>CEP:</strong> ${document.getElementById('cep').value}</p>
+            <p><strong>Bairro (Taxa):</strong> ${bairroEntrega}</p>
+=======
+            <p><strong>Referência:</strong> ${document.getElementById('referenciaInput').value}</p>
+            <p><strong>CEP:</strong> ${document.getElementById('cep').value}</p>
+            <p><strong>Bairro:</strong> ${bairroEntrega}</p>
+>>>>>>> 6edad049bbe60ad5af6ee02ee3b69a69d9f2f096
+>>>>>>> 3edbbce453ac1f435f1751291f1f4ea9d7e0ef96
             <p><strong>Pagamento:</strong> ${paymentMethod}</p>
         `;
         
@@ -1013,7 +1246,26 @@ function setupFieldValidation() {
         });
     }
     
+<<<<<<< HEAD
     // Campo Ponto de Referência removido
+=======
+    // Validação do campo Ponto de Referência
+    const referenciaInput = document.getElementById('referenciaInput');
+    if (referenciaInput) {
+        referenciaInput.addEventListener('input', function() {
+            const valorOriginal = this.value;
+            // Remove caracteres especiais não permitidos (permite letras, números e pontuação básica)
+            let valor = this.value.replace(/[^A-Za-zÀ-ÿ0-9\s,.-]/g, '');
+            
+            // Se houve remoção de caracteres, mostra alerta
+            if (valorOriginal !== valor) {
+                showAlert('Este campo aceita apenas letras, números e pontuação básica!', 'warning');
+            }
+            
+            this.value = valor;
+        });
+    }
+>>>>>>> 3edbbce453ac1f435f1751291f1f4ea9d7e0ef96
     
     // Validação do campo Endereço
     const enderecoInput = document.getElementById('enderecoInput');

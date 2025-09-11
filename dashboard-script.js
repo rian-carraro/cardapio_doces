@@ -22,10 +22,20 @@ class DashboardManager {
         $('.nav-link').on('click', (e) => this.handleNavigation(e));
         
         // Mobile menu
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> 3edbbce453ac1f435f1751291f1f4ea9d7e0ef96
         $('#menuToggle').on('click', (e) => {
             e.preventDefault();
             this.toggleSidebar();
         });
+<<<<<<< HEAD
+=======
+=======
+        $('#mobileMenuToggle').on('click', () => this.toggleSidebar());
+>>>>>>> 6edad049bbe60ad5af6ee02ee3b69a69d9f2f096
+>>>>>>> 3edbbce453ac1f435f1751291f1f4ea9d7e0ef96
         $('#mobileOverlay').on('click', () => this.closeSidebar());
         $(document).on('keydown', (e) => {
             if (e.key === 'Escape') this.closeSidebar();
@@ -55,12 +65,15 @@ class DashboardManager {
         $('#exportOrders').on('click', () => this.exportTableToPDF('#recentOrdersTable', 'Pedidos_Recentes'));
         $('#exportProducts').on('click', () => this.exportTableToPDF('#productsRankingTable', 'Ranking_Produtos'));
         $('#exportAddresses').on('click', () => this.exportTableToPDF('#addressesTable', 'Enderecos_Clientes'));
+<<<<<<< HEAD
         
         // Add Products functionality
         $('#addProductForm').on('submit', (e) => this.handleAddProduct(e));
         $('#clearForm').on('click', () => this.clearAddProductForm());
         $('#clearAllProducts').on('click', () => this.clearAllAddedProducts());
         $('#exportProductsList').on('click', () => this.exportAddedProducts());
+=======
+>>>>>>> 3edbbce453ac1f435f1751291f1f4ea9d7e0ef96
     }
 
     handleChartControl(e) {
@@ -202,6 +215,10 @@ class DashboardManager {
     loadProductsList() {
         // Lista de todos os produtos do cardápio
         return [
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> 3edbbce453ac1f435f1751291f1f4ea9d7e0ef96
             // Doces no Pote (nomes iguais ao cardápio)
             { name: 'Bom Bom de Morango', category: 'Doces no Pote', price: 12.00 },
             { name: 'Bom Bom de Uva', category: 'Doces no Pote', price: 12.00 },
@@ -222,12 +239,45 @@ class DashboardManager {
             { name: 'Trufa de Nutella', category: 'Trufas Brancas', price: 6.50 },
             { name: 'Trufa de Ninho', category: 'Trufas Brancas', price: 6.00 },
             { name: 'Trufa de Oreo', category: 'Trufas Brancas', price: 6.00 },
+<<<<<<< HEAD
+=======
+=======
+            { name: 'Bom Bom de Morango', category: 'Doces', price: 12.00 },
+            { name: 'Bom Bom de Uva', category: 'Doces', price: 12.00 },
+            { name: 'Tortinha de Limão', category: 'Doces', price: 12.00 },
+            { name: 'Trufa de Nutella', category: 'Trufas', price: 6.50 },
+            { name: 'Trufa de Brigadeiro', category: 'Trufas', price: 6.00 },
+            { name: 'Trufa de Ninho', category: 'Trufas', price: 6.00 },
+            { name: 'Trufa de Ninho com Nutella', category: 'Trufas', price: 6.00 },
+            { name: 'Trufa de Oreo', category: 'Trufas', price: 6.00 },
+            { name: 'Trufa de Pistache', category: 'Trufas', price: 6.50 },
+            { name: 'Trufa de Pistache com Ninho', category: 'Trufas', price: 6.50 },
+            { name: 'Trufa de Limão', category: 'Trufas', price: 6.00 },
+            { name: 'Trufa de Nutella ao Leite', category: 'Trufas ao Leite', price: 6.50 },
+            { name: 'Trufa de Ninho com Nutella ao Leite', category: 'Trufas ao Leite', price: 6.50 },
+            { name: 'Trufa de Brigadeiro ao Leite', category: 'Trufas ao Leite', price: 6.00 },
+            { name: 'Trufa de Ninho ao Leite', category: 'Trufas ao Leite', price: 6.00 },
+            { name: 'Trufa de Oreo ao Leite', category: 'Trufas ao Leite', price: 6.00 },
+>>>>>>> 6edad049bbe60ad5af6ee02ee3b69a69d9f2f096
+>>>>>>> 3edbbce453ac1f435f1751291f1f4ea9d7e0ef96
             { name: 'Trufa de Ninho (Casquinha de Pistache)', category: 'Casquinha de Pistache', price: 7.00 },
             { name: 'Trufa de Pistache (Casquinha de Pistache)', category: 'Casquinha de Pistache', price: 7.00 },
             { name: 'Refrigerante cola 350ml', category: 'Bebidas', price: 6.00 },
             { name: 'Refrigerante cola zero 350ml', category: 'Bebidas', price: 6.00 },
+<<<<<<< HEAD
             { name: 'Água Mineral com gás 500ml', category: 'Bebidas', price: 4.00 },
             { name: 'Água Mineral sem gás 500ml', category: 'Bebidas', price: 4.00 }
+=======
+<<<<<<< HEAD
+            { name: 'Água Mineral com gás 500ml', category: 'Bebidas', price: 4.00 },
+            { name: 'Água Mineral sem gás 500ml', category: 'Bebidas', price: 4.00 }
+=======
+            { name: 'Água Mineral 500ml', category: 'Bebidas', price: 4.00 },
+            { name: 'Água mineral com gás.', category: 'Bebidas', price: 4.00 },
+            { name: 'Suco Maracuja 200ml', category: 'Bebidas', price: 10.00 },
+            { name: 'Suco Laranja 200ml', category: 'Bebidas', price: 10.00 }
+>>>>>>> 6edad049bbe60ad5af6ee02ee3b69a69d9f2f096
+>>>>>>> 3edbbce453ac1f435f1751291f1f4ea9d7e0ef96
         ];
     }
 
@@ -1186,11 +1236,14 @@ class DashboardManager {
         $('.content-section').removeClass('active');
         $(`#${target}-section`).addClass('active');
         
+<<<<<<< HEAD
         // Load specific data for each section
         if (target === 'add-products') {
             this.updateAddedProductsTable();
         }
         
+=======
+>>>>>>> 3edbbce453ac1f435f1751291f1f4ea9d7e0ef96
         // Renderizar gerenciamento de produtos quando navegar para produtos
         if (target === 'products') {
             this.renderProductManagement();
@@ -1244,6 +1297,7 @@ class DashboardManager {
         }
     }
 
+<<<<<<< HEAD
     // ===== PRODUCT MANAGEMENT METHODS =====
     
     handleAddProduct(e) {
@@ -1363,6 +1417,8 @@ class DashboardManager {
         document.body.removeChild(link);
     }
 
+=======
+>>>>>>> 3edbbce453ac1f435f1751291f1f4ea9d7e0ef96
     formatCurrency(value) {
         return new Intl.NumberFormat('pt-BR', {
             style: 'currency',
